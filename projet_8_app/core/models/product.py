@@ -1,6 +1,7 @@
 from django.db import models
 
 from .category import Category
+from .store import Store
 
 class Product(models.Model):
     
@@ -11,3 +12,5 @@ class Product(models.Model):
     off_url = models.CharField(max_length=255)
     
     categories = models.ManyToManyField(Category)
+    stores = models.ManyToManyField(Store)
+    substitutes = models.ManyToManyField("self")
