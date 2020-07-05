@@ -14,3 +14,6 @@ class Product(models.Model):
     categories = models.ManyToManyField(Category)
     stores = models.ManyToManyField(Store)
     substitutes = models.ManyToManyField("self")
+
+    def __str__(self):
+        return self.product_name
