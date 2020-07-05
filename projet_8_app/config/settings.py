@@ -123,3 +123,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# API Openfoodfacts
+API_OFF = "https://fr.openfoodfacts.org/cgi/search.pl?"
+
+  
+PAYLOAD = {
+    "action": "process",
+    "tagtype_0": "categories",
+    "tag_contains_0": "contains",
+    "tag_0": "",
+    "page_size": 1000,
+    "json": True
+    }
+
+CATEGORIES: ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]
