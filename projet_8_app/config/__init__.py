@@ -4,6 +4,5 @@ def settings(request):
     """
     from django.conf import settings
     return {
-        'API_OFF': settings.API_OFF,
-        'GOOGLEMAPS_API_KEY': settings.GOOGLEMAPS_API_KEY,
+        'API_OFF': settings.API_OFF
     }
