@@ -4,5 +4,7 @@ def settings(request):
     """
     from django.conf import settings
     return {
-        'API_OFF': settings.API_OFF
+        'API_OFF': settings.API_OFF,
+        'PAYLOAD': settings.PAYLOAD,
+        'CATEGORIES': settings.CATEGORIES
     }
