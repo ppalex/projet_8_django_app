@@ -58,8 +58,7 @@ class ProductDownloaderTestCase(TestCase):
         @mock.patch('core.models.product.requests.get')
         def test_send_request(self, mock_get):
 
-            results = [
-                        {
+            results = {
                             "skip": 0,
                             "count": 1663,
                             "page_size": "20",
@@ -67,13 +66,13 @@ class ProductDownloaderTestCase(TestCase):
                             "products": [{
                                 "barcode": 123,
                                 "product_name": "Dolce pizza",
-                                "categories": ["pizza", "pizza fromage"],
+                                "categories": "pizza,pizza fromage",
                                 "nutriscore_grade": "A",
                                 "stores_tags": ["carrefour-city", "franprix"],
                                 "ingredients_text_debug":  "Description of the product",
                                 "url": "www.url.com",
                             }]
-                        }]
+                        }
 
             payload = Payload(
                     action=settings.PAYLOAD['action'],
@@ -99,24 +98,22 @@ class ProductDownloaderTestCase(TestCase):
 class ProductCleanerTestCase(TestCase):
     
     def test_create(self):
-        product_list_dic = [{
+        product_list_dic = {
                                 "products": [                                  
                                     {
                                         "barcode": 123,
                                         "product_name": "Dolce pizza",
-                                        "categories": ["pizza", "pizza fromage"],
                                         "nutriscore_grade": "A",
-                                        "stores_tags": ["carrefour-city", "franprix"],
                                         "ingredients_text_debug":  "Description of the product",
                                         "url": "www.url.com"},
                                     {
                                         "barcode": 1234,
                                         "product_name": "Proschuitto",
-                                        "categories": ["pizza"],
                                         "nutriscore_grade": "B",
-                                        "stores_tags": ["carrefour-city"],
                                         "ingredients_text_debug":  "Description of the product",
-                                        "url": "www.url.com"}]}]
+                                        "url": "www.url.com"}]}
+
+        
 
         product_cleaner = ProductCleaner()
         product_cleaner_list = product_cleaner.create(product_list_dic, "pizza")

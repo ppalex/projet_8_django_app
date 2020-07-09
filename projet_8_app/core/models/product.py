@@ -5,6 +5,8 @@ from django.db import models
 from .category import Category
 from .store import Store
 
+from core.managers.product_manager import ProductManager
+
 class Product(models.Model):
     
     barcode = models.BigIntegerField(primary_key=True)
@@ -16,6 +18,8 @@ class Product(models.Model):
     categories = models.ManyToManyField(Category)
     stores = models.ManyToManyField(Store)
     substitutes = models.ManyToManyField("self")
+
+    product_object = ProductManager()
 
 
     @classmethod
@@ -85,11 +89,8 @@ class ProductCleaner:
             Product(**{
                 'barcode': product.get('id', None),
                 'product_name': product.get('product_name', None),
-                'category': category,
                 'nutriscore_grade': product.get('nutriscore_grade', None),
-                'categories': product.get('categories', None).split(','),
-                'stores': product.get('stores_tags', []),
-                'description': product.get('ingredients_text_debug', None),
+                'product_description': product.get('ingredients_text_debug', None),
                 'off_url': product.get('url', None)}
             ) for product in products['products']]
 
