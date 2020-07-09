@@ -3,23 +3,22 @@ from unittest import mock
 from django.conf import settings
 from django.test import TestCase
 
-from core.models.product import Product, requests, ProductDownloader, ProductCleaner
+from core.models.product import Product, requests, ProductDownloader, ProductCleaner, ProductInventory
 from core.models.payload import Payload
-
+from core.managers.product_manager import ProductManager
 
 
 class ProductTestCase(TestCase):
     def setUp(self):
-        Product.objects.create(barcode=123,
+        Product.product_objects.create_product(barcode=123,
                                 product_name="product_name",
                                 nutriscore_grade="A",
                                 product_description="Product description",
-                                off_url="www.off.com")
-        
+                                off_url="www.off.com")        
 
-    def test_product_instance(self):
-        """Animals that can speak are correctly identified"""
-        product = Product.objects.get(barcode=123)
+    def test_product_instance(self):        
+       
+        product = Product.product_objects.get(barcode=123)
                
         self.assertEqual(product.barcode, 123)
         self.assertEqual(product.product_name, "product_name")
@@ -28,29 +27,29 @@ class ProductTestCase(TestCase):
 
 
     def test_str(self):
-        product = Product.objects.get(barcode=123)
+        product = Product.product_objects.get(barcode=123)
 
         self.assertEqual(str(product), "product_name")
 
-    def test_create_product(self):
+    # def test_create_product(self):
 
-        product_dic = [
-                        {
-                            'barcode':123,
-                            'product_name':"product_name",
-                            'nutriscore_grade':"A",
-                            'product_description':"Product description",
-                            'off_url':"www.off.com"}]
+    #     product_dic = [
+    #                     {
+    #                         'barcode':123,
+    #                         'product_name':"product_name",
+    #                         'nutriscore_grade':"A",
+    #                         'product_description':"Product description",
+    #                         'off_url':"www.off.com"}]
         
-        product_list = Product.create_product(product_dic)
+    #     product_list = Product.create_product(product_dic)
 
-        product = product_list[0]
+    #     product = product_list[0]
 
-        self.assertEquals(True, isinstance(product, Product))
-        self.assertEqual(product.barcode, 123)
-        self.assertEqual(product.product_name, "product_name")
-        self.assertEqual(product.product_description, "Product description")
-        self.assertEqual(product.off_url, "www.off.com")
+    #     self.assertEquals(True, isinstance(product, Product))
+    #     self.assertEqual(product.barcode, 123)
+    #     self.assertEqual(product.product_name, "product_name")
+    #     self.assertEqual(product.product_description, "Product description")
+    #     self.assertEqual(product.off_url, "www.off.com")
         
         
 class ProductDownloaderTestCase(TestCase):    
@@ -80,7 +79,7 @@ class ProductDownloaderTestCase(TestCase):
                     tag_contains_0=settings.PAYLOAD['tag_contains_0'],
                     tagtype_0=settings.PAYLOAD['tagtype_0'],
                     page_size=settings.PAYLOAD['page_size'],
-                    json=settings.PAYLOAD['json'])       
+                    json=settings.PAYLOAD['json'])   
 
 
             
@@ -98,33 +97,22 @@ class ProductDownloaderTestCase(TestCase):
 class ProductCleanerTestCase(TestCase):
     
     def test_create(self):
-        product_list_dic = {
-                                "products": [                                  
-                                    {
-                                        "barcode": 123,
-                                        "product_name": "Dolce pizza",
-                                        "nutriscore_grade": "A",
-                                        "ingredients_text_debug":  "Description of the product",
-                                        "url": "www.url.com"},
-                                    {
-                                        "barcode": 1234,
-                                        "product_name": "Proschuitto",
-                                        "nutriscore_grade": "B",
-                                        "ingredients_text_debug":  "Description of the product",
-                                        "url": "www.url.com"}]}
-
-        
+        product = { "id": 123,
+                    "product_name": "Dolce pizza",
+                    "categories": "pizza, cheese pizza",
+                    "nutriscore_grade": "A",
+                    "stores": ["carrefour", "franprix"],
+                    "ingredients_text_debug":  "Description of the product",
+                    "url": "www.url.com"}    
 
         product_cleaner = ProductCleaner()
-        product_cleaner_list = product_cleaner.create(product_list_dic, "pizza")
+        product_cleaner = product_cleaner.create(product, "pizza")
 
-        product_one = product_cleaner_list[0]
-        product_two = product_cleaner_list[1]
-
-        self.assertEquals(True, isinstance(product_one, Product))
-        self.assertEquals(True, isinstance(product_two, Product))
-
-
+        self.assertEquals(True, isinstance(product_cleaner, ProductCleaner))
+        self.assertEquals(product_cleaner.barcode, 123)
+        self.assertEquals(product_cleaner.product_name, "Dolce pizza")
+        self.assertEquals(product_cleaner.categories, ["pizza", " cheese pizza"])
+        
     def test_format_categories(self):
         pass
 
@@ -134,6 +122,20 @@ class ProductCleanerTestCase(TestCase):
     def test_split_string(self):
         pass
 
+class ProductInventoryTestCase(TestCase):    
+
+    def test_add_product(self):
+
+        product = { "id": 123,
+                    "product_name": "Dolce pizza"}   
+
+        product_cleaner = ProductCleaner()
+        product_cleaner = product_cleaner.create(product, "pizza")
+        
+        product_inventory = ProductInventory()
+
+        product_inventory.add_product(product_cleaner)
+        self.assertEqual(len(product_inventory.inventory),1)    
 
 
 class PayloadTestCase(TestCase):

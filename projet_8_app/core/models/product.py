@@ -19,21 +19,7 @@ class Product(models.Model):
     stores = models.ManyToManyField(Store)
     substitutes = models.ManyToManyField("self")
 
-    product_object = ProductManager()
-
-
-    @classmethod
-    def create_product(cls, product_list):
-        """This class method creates object Product from a list.
-
-        Arguments:
-            product_list {List} -- This list contains dictionnaries of product
-            data.
-
-        Returns:
-            [List] -- This list contains Products object.
-        """
-        return [cls(**product) for product in product_list]
+    product_objects = ProductManager()    
 
     def __str__(self):
         return self.product_name
@@ -69,11 +55,22 @@ class ProductDownloader:
 
 
 class ProductCleaner:
-    def __init__(self):
-        pass
+    def __init__(self, **product_attributes):
+        for attr_name, attr_value in product_attributes.items():
+            setattr(self, attr_name, attr_value)
 
-    @staticmethod
-    def create(products, category):
+
+    def __str__(self):
+        """This method return an object Product in String format
+        """
+        string = ""
+        attr = vars(self)
+        for k, v in attr.items():
+            string += f"{k} : {v} \n"
+        return string
+
+    @classmethod
+    def create(cls, product, category):
         """This method creates a list of Product from a list of dictionnaries.
             The method get from the dictionnary the information needed.
             Information not needed are not stored in Products objects.
@@ -85,19 +82,21 @@ class ProductCleaner:
         Returns:
             [List] -- List of Product.
         """
-        product_list = [
-            Product(**{
+        
+        product_cleaner = cls(**{
                 'barcode': product.get('id', None),
                 'product_name': product.get('product_name', None),
+                'category': category,
                 'nutriscore_grade': product.get('nutriscore_grade', None),
-                'product_description': product.get('ingredients_text_debug', None),
-                'off_url': product.get('url', None)}
-            ) for product in products['products']]
+                'categories': product.get('categories', "").split(','),
+                'stores': product.get('stores_tags', []),
+                'description': product.get('ingredients_text_debug', None),
+                'off_url': product.get('url', None)})
+        
+        return product_cleaner
 
-        return product_list
-
-    @staticmethod
-    def format_categories(product_list):
+    
+    def format_categories(self):
         """[summary]
 
         Arguments:
@@ -109,7 +108,7 @@ class ProductCleaner:
                 categories.append(category.lstrip().rstrip())
             setattr(product, 'categories', categories)
 
-    def split_categories(self, product_list):
+    def split_categories(self):
         """This method splits categories from a list of Product.
 
         Arguments:
@@ -126,3 +125,11 @@ class ProductCleaner:
             product {Object} -- Represent a Product.
         """
         setattr(product, 'categories', product.categories.split(','))
+
+
+class ProductInventory:
+    def __init__(self):
+        self.inventory = []
+
+    def add_product(self, product):
+        self.inventory.append(product)
