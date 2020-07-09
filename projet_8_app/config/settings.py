@@ -133,7 +133,7 @@ PAYLOAD = {
     "tagtype_0": "categories",
     "tag_contains_0": "contains",
     "tag_0": "",
-    "page_size": 1000,
+    "page_size": 1,
     "json": True
     }
 

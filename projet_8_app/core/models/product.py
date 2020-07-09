@@ -1,3 +1,5 @@
+import requests
+
 from django.db import models
 
 from .category import Category
@@ -46,17 +48,20 @@ class ProductDownloader:
         self.headers = headers
         self.payload = payload
 
-    def load_data_source(self):
+    def send_request(self):
         """This method send a request on the url API.
 
         Returns:
             [Response] -- The response contains the data from api request
                             in Json format.
         """
-        # Rajouter une gestion d'erreur
-        response = requests.request(
-            "GET", self.url, headers=self.headers, params=self.payload)
-        return response.json()
+        
+        response = requests.get(self.url, headers=self.headers, params=self.payload)
+        
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return None
 
 
 class ProductCleaner:
