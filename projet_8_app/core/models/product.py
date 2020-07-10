@@ -38,6 +38,8 @@ class ProductDownloader:
         self.headers = headers
         self.payload = payload
 
+        self.data_json = None
+
     def send_request(self):
         """This method send a request on the url API.
 
@@ -49,10 +51,10 @@ class ProductDownloader:
         response = requests.get(self.url, headers=self.headers, params=self.payload)
         
         if response.status_code == 200:
-            return response.json()
-        else:
-            return None
-
+            self.data_json = response.json()
+        
+    def get_products_from_json(self):
+        return self.data_json['products']
 
 class ProductCleaner:
     def __init__(self, **product_attributes):
@@ -95,8 +97,11 @@ class ProductCleaner:
         
         return product_cleaner
 
-    
-    def format_categories(self):
+    def create_list_product_cleaner(self, products_list, category):
+        return [self.create(product, category) for product in product_list]
+
+    @staticmethod
+    def format_categories(product_list):
         """[summary]
 
         Arguments:

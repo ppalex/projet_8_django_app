@@ -1,58 +1,63 @@
-# from django.conf import settings
+from django.conf import settings
 
-# class ApiManager:
-#     def __init__(self):
-#         """Constructor of the class ApiManager.
-#         """
-#         self.data = None
+from models.product import ProductDownloader, ProductCleaner
+from models.payload import Payload
 
-#     def download_product(self, category_list):
-#         """This method download products by category from openfoodfact api.
-#              The data are recovered in self.data.
+class ApiManager:
+    def __init__(self):
+        """Constructor of the class ApiManager.
+        """
+        self.data = []
 
-#         Arguments:
-#             category_list {List} -- List of products categories.
-#         """
-#         url = settings.API_OFF
-#         headers = {}
-#         data = []
+    def download_product(self):
+        """This method download products by category from openfoodfact api.
+             The data are recovered in self.data.
 
-#         for category in category_list:
-#             payload = Payload(
-#                 action=config.value['PAYLOAD']['action'],
-#                 tag_0=category,
-#                 tag_contains_0=config.value['PAYLOAD']['tag_contains_0'],
-#                 tagtype_0=config.value['PAYLOAD']['tagtype_0'],
-#                 page_size=config.value['PAYLOAD']['page_size'],
-#                 json=config.value['PAYLOAD']['json'])
+        Arguments:
+            category_list {List} -- List of products categories.
+        """
+        url = settings.API_OFF
+        headers = {}
 
-#             product_downloader = ProductDownloader(
-#                 url, headers, payload.get_payload_formatted())
-#             products_data = product_downloader.load_data_source()
-#             product_cleaner = ProductCleaner.create(
-#                 products_data, category)
-#             ProductCleaner.format_categories(product_cleaner)
-#             data += product_cleaner
+        category_list = settings.CATEGORIES
+        
+        for category in category_list:
+            payload = Payload(
+                action=settings.PAYLOAD['action'],
+                tag_0=settings.PAYLOAD['tag_0'],
+                tag_contains_0=settings.PAYLOAD['tag_contains_0'],
+                tagtype_0=settings.PAYLOAD['tagtype_0'],
+                page_size=settings.PAYLOAD['page_size'],
+                json=settings.PAYLOAD['json'])
 
-#         self.data = data
+            product_downloader = ProductDownloader(url, headers, payload.get_payload_formatted())
+            product_downloader.send_request()
 
-#     def get_all_categories(self):
-#         """This method get all categories from products recovered in self.data.
+            products_list = product_downloader.get_products_from_json()
+            product_cleaner_list = ProductCleaner.create_list_product_cleaner(products_list, category)    
 
-#         Returns:
-#             [List] -- Contains all the possible categories from products.
-#         """
-#         product_list = self.data
-#         return [category for product in product_list
-#                 for category in product.categories]
+            ProductCleaner.format_categories(product_cleaner_list)
 
-#     def get_all_stores(self):
-#         """This method get all stores from products recovered in self.data.
+            self.data += product_cleaner_list
 
-#         Returns:
-#             [List] -- Contains all the possible categories from products.
-#         """
-#         product_list = self.data
+   
+    def get_all_categories(self):
+        """This method get all categories from products recovered in self.data.
 
-#         return [store for product in product_list
-#                 for store in product.stores]
+        Returns:
+            [List] -- Contains all the possible categories from products.
+        """
+        product_list = self.data
+        return [category for product in product_list
+                for category in product.categories]
+
+    def get_all_stores(self):
+        """This method get all stores from products recovered in self.data.
+
+        Returns:
+            [List] -- Contains all the possible categories from products.
+        """
+        product_list = self.data
+
+        return [store for product in product_list
+                for store in product.stores]

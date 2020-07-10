@@ -79,9 +79,7 @@ class ProductDownloaderTestCase(TestCase):
                     tag_contains_0=settings.PAYLOAD['tag_contains_0'],
                     tagtype_0=settings.PAYLOAD['tagtype_0'],
                     page_size=settings.PAYLOAD['page_size'],
-                    json=settings.PAYLOAD['json'])   
-
-
+                    json=settings.PAYLOAD['json'])
             
             mock_get().status_code = 200
             mock_get().json.return_value = results
@@ -89,9 +87,32 @@ class ProductDownloaderTestCase(TestCase):
             product_downloader = ProductDownloader(
                 url=settings.API_OFF, headers={}, payload=payload.get_payload_formatted())
 
-            response = product_downloader.send_request()
+            product_downloader.send_request()
             
-            self.assertEqual(response, results)
+            self.assertEqual(product_downloader.data_json, results)
+
+
+        # def test_get_product_from_json(self):
+        #     self.test_send_request()
+
+        #     results = results = {
+        #                     "skip": 0,
+        #                     "count": 1663,
+        #                     "page_size": "20",
+        #                     "page": 1,
+        #                     "products": [{
+        #                         "barcode": 123,
+        #                         "product_name": "Dolce pizza",
+        #                         "categories": "pizza,pizza fromage",
+        #                         "nutriscore_grade": "A",
+        #                         "stores_tags": ["carrefour-city", "franprix"],
+        #                         "ingredients_text_debug":  "Description of the product",
+        #                         "url": "www.url.com",
+        #                     }]
+        #                 }
+
+        #     data = Pro
+        #     self.assertEqual()
 
 
 class ProductCleanerTestCase(TestCase):
