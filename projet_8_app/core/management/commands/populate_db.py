@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 
+from .initialize import initialize_job
+
 class Command(BaseCommand):
     help = "Download data from Openfoodfact and populate the db."
 
@@ -11,4 +13,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['initialize']:
-            print('ok')
+            initialize_job()
+            
+            

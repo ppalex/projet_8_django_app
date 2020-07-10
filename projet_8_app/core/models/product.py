@@ -98,7 +98,7 @@ class ProductCleaner:
         return product_cleaner
 
     def create_list_product_cleaner(self, products_list, category):
-        return [self.create(product, category) for product in product_list]
+        return [self.create(product, category) for product in products_list]
 
     @staticmethod
     def format_categories(product_list):

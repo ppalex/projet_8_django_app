@@ -137,4 +137,4 @@ PAYLOAD = {
     "json": True
     }
 
-CATEGORIES: ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]
+CATEGORIES = ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]

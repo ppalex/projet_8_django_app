@@ -90,29 +90,7 @@ class ProductDownloaderTestCase(TestCase):
             product_downloader.send_request()
             
             self.assertEqual(product_downloader.data_json, results)
-
-
-        # def test_get_product_from_json(self):
-        #     self.test_send_request()
-
-        #     results = results = {
-        #                     "skip": 0,
-        #                     "count": 1663,
-        #                     "page_size": "20",
-        #                     "page": 1,
-        #                     "products": [{
-        #                         "barcode": 123,
-        #                         "product_name": "Dolce pizza",
-        #                         "categories": "pizza,pizza fromage",
-        #                         "nutriscore_grade": "A",
-        #                         "stores_tags": ["carrefour-city", "franprix"],
-        #                         "ingredients_text_debug":  "Description of the product",
-        #                         "url": "www.url.com",
-        #                     }]
-        #                 }
-
-        #     data = Pro
-        #     self.assertEqual()
+            self.assertEqual(product_downloader.get_products_from_json(), results['products'])
 
 
 class ProductCleanerTestCase(TestCase):

@@ -1,11 +1,11 @@
 from django.conf import settings
 
-from models.product import ProductDownloader, ProductCleaner
-from models.payload import Payload
+from core.models.product import ProductDownloader, ProductCleaner
+from core.models.payload import Payload
 
-class ApiManager:
+class OffManager:
     def __init__(self):
-        """Constructor of the class ApiManager.
+        """Constructor of the class OffManager.
         """
         self.data = []
 
@@ -34,9 +34,11 @@ class ApiManager:
             product_downloader.send_request()
 
             products_list = product_downloader.get_products_from_json()
-            product_cleaner_list = ProductCleaner.create_list_product_cleaner(products_list, category)    
 
-            ProductCleaner.format_categories(product_cleaner_list)
+            product_cleaner = ProductCleaner()
+            product_cleaner_list = product_cleaner.create_list_product_cleaner(products_list, category)    
+
+            product_cleaner.format_categories(product_cleaner_list)
 
             self.data += product_cleaner_list
 
