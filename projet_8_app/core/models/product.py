@@ -5,7 +5,7 @@ from django.db import models
 from .category import Category
 from .store import Store
 
-from core.managers.product_manager import ProductManager
+from core.models.managers.product_manager import ProductManager
 
 class Product(models.Model):
     
@@ -17,12 +17,14 @@ class Product(models.Model):
     
     categories = models.ManyToManyField(Category)
     stores = models.ManyToManyField(Store)
-    substitutes = models.ManyToManyField("self")
+    substitutes = models.ManyToManyField("self", symmetrical=False)
 
     product_objects = ProductManager()    
 
     def __str__(self):
         return self.product_name
+    
+
 
 
 class ProductDownloader:

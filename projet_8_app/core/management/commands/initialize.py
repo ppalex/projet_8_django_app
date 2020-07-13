@@ -1,5 +1,6 @@
 from core.models.product import Product
-from core.managers.openfoodfact_manager import OffManager
+from core.models.managers.openfoodfact_manager import OffManager
+from core.models.managers.product_manager import ProductManager
 
 def initialize_job():
     """This function is the job to create tables in db and populates db with
@@ -8,4 +9,6 @@ def initialize_job():
     openfoodfact_manager = OffManager()
     openfoodfact_manager.download_product()
 
-    import pdb; pdb.set_trace()
+    product_list = openfoodfact_manager.data
+
+    ProductManager().insert_product_db(product_list)
