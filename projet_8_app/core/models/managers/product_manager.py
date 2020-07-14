@@ -29,6 +29,9 @@ class ProductManager(models.Manager):
 
     def insert_product_db(self, product_list):
         
+        category_model = apps.get_model('core', 'Category')
+        store_model = apps.get_model('core', 'Store')
+        
         for element in product_list:
             product = self.create_product(element.barcode,
                                             element.product_name,
@@ -37,6 +40,9 @@ class ProductManager(models.Manager):
                                             element.off_url)
             if product is not None:
                 product.save()
-                import pdb; pdb.set_trace()
-                product.categories.add(*element.categories)
+                
+                categories = [category_model.objects.create(category_name=category) for category in element.categories]
+                stores = [store_model.objects.create(store_name=store) for store in element.stores]
+                product.categories.add(*categories)
+                product.stores.add(*stores)
     
