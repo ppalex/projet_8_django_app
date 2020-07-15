@@ -10,7 +10,7 @@ from core.models.managers.product_manager import ProductManager
 class Product(models.Model):
     
     barcode = models.BigIntegerField(primary_key=True)
-    product_name = models.CharField(max_length=255)
+    product_name = models.CharField(max_length=255, unique=True)
     nutriscore_grade = models.CharField(max_length=4)
     product_description = models.TextField()
     off_url = models.CharField(max_length=255)
@@ -24,9 +24,6 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
-
-
-
 class ProductDownloader:
     def __init__(self, url, headers, payload):
         """Constructor of the class ProductDownloader.

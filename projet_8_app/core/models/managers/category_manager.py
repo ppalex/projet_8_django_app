@@ -5,14 +5,14 @@ from django.apps import apps
 from django.db import IntegrityError
 import logging
 
-class ProductManager(models.Manager):
+class CategoryManager(models.Manager):
     
-    def create_category(self):
+    def create_category(self, category_name):
         
         category_model = apps.get_model('core', 'Category')
         
         try:
-            category = category_model.product_objects.create()
+            category = category_model.category_objects.create(category_name=category_name)
 
             return category
 
@@ -21,5 +21,17 @@ class ProductManager(models.Manager):
                 return None
 
 
-    def insert_categories_db(self, product):
-        pass
+    def get_categories_objects(self, category_list):
+
+        categories = []
+        category_model = apps.get_model('core', 'Category')
+
+        for category in category_list:
+            try:
+                selected_category = category_model.category_objects.get(category_name=category)
+                categories.append(selected_category)
+            
+            except category_model.DoesNotExist:
+                categories.append(category_model.category_objects.create(category_name=category))
+
+        return categories

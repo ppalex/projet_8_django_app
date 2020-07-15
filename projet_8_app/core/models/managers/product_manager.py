@@ -1,9 +1,10 @@
-from django.db import models
+import logging
 
 from django.apps import apps
+from django.db import IntegrityError, models
 
-from django.db import IntegrityError
-import logging
+from core.models.managers.store_manager import StoreManager
+from core.models.managers.category_manager import CategoryManager
 
 class ProductManager(models.Manager):
     
@@ -22,27 +23,23 @@ class ProductManager(models.Manager):
 
         except IntegrityError:
                 logging.error("Integrity violation")
-                return None
-                               
-        
-
-
-    def insert_product_db(self, product_list):
-        
-        category_model = apps.get_model('core', 'Category')
-        store_model = apps.get_model('core', 'Store')
+                return None                            
+ 
+    def insert_product_db(self, product_list):     
         
         for element in product_list:
+
             product = self.create_product(element.barcode,
                                             element.product_name,
                                             element.nutriscore_grade,
                                             element.description,
                                             element.off_url)
-            if product is not None:
-                product.save()
-                
-                categories = [category_model.objects.create(category_name=category) for category in element.categories]
-                stores = [store_model.objects.create(store_name=store) for store in element.stores]
+            if product is not None:                
+                stores = []
+                product.save()      
+               
+                categories = CategoryManager.get_categories_objects(element.categories)
+                stores = StoreManager.get_stores_objects(element.stores)
+
                 product.categories.add(*categories)
                 product.stores.add(*stores)
-    
