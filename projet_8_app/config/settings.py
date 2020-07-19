@@ -68,6 +68,11 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/projet_8_app/static/',
+]
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
