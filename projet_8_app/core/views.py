@@ -1,4 +1,12 @@
 from django.shortcuts import render
 
+
+from substitutes.forms import SubstituteSearchForm
+
 def index(request):
-    return render(request, 'core/home.html')
+
+    form = SubstituteSearchForm()
+
+    context = {'form' : form}
+
+    return render(request, 'core/home.html', context)
