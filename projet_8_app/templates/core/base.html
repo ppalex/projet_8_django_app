@@ -24,11 +24,26 @@
     <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
 </head>
 
+<body id="page-top">
+    {% include "core/includes/_navbar.html" %}
+    {% block header %}
+
+    {% include "core/includes/_header.html" %}
+
+    {% endblock header %}
 
 
-{% block body %}
 
-{% endblock body %}
+
+    {% block body %}
+
+    {% endblock body %}
+
+
+</body>
+
+{% include "core/includes/_footer.html" %}
+
 
 <!-- Bootstrap core JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

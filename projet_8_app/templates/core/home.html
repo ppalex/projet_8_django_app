@@ -1,33 +1,7 @@
 {% extends "core/base.html" %}
 
-{% block body %}
-
-<body id="page-top">
-
-    {% include "core/includes/_navbar.html" %}
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Du gras, oui, mais de qualité !
-                    </h1>
-                    <h2 class="text-uppercase text-white font-weight-bold">
-                        Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
-                    </h2>
-                    <hr class="divider my-4" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <div class="search-container">
-                        <form action="">
-                            <input type="text" placeholder="Produit" name="search">
-                            <button class="btn btn-light" type="submit">Chercher</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+{% block body %}    
+   
     <!-- About-->
     {% include "core/about.html" %}
     <!-- Portfolio -->
@@ -35,14 +9,6 @@
 
     <!-- Contact -->
     {% include "core/contact.html" %}
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container">
-            <div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div>
-        </div>
-    </footer>
-
-
-</body>
+    
 
 {% endblock body %}
