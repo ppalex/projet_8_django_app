@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <title>Creative - Start Bootstrap Theme</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -25,7 +25,9 @@
 </head>
 
 <body id="page-top">
+
     {% include "core/includes/_navbar.html" %}
+
     {% block header %}
 
     {% include "core/includes/_header.html" %}
@@ -35,11 +37,13 @@
 
 
 
-    {% block body %}
+    {% block content %}
 
-    {% endblock body %}
+    {% endblock content %}
 
-
+    <!-- Contact -->
+    {% include "core/contact.html" %}
+    
 </body>
 
 {% include "core/includes/_footer.html" %}
