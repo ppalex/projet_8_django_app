@@ -6,6 +6,7 @@ from django.db import IntegrityError, models
 from core.models.managers.store_manager import StoreManager
 from core.models.managers.category_manager import CategoryManager
 
+
 class ProductManager(models.Manager):
     
     def create_product(self, barcode, product_name, nutriscore_grade, product_description, off_url):
@@ -43,3 +44,24 @@ class ProductManager(models.Manager):
 
                 product.categories.add(*categories)
                 product.stores.add(*stores)
+
+
+    def get_all_product_by_category(self):
+        pass
+
+    def get_all_product_by_nutriscore_inf(self, nutriscore):
+        product_model = apps.get_model('core', 'Product')
+
+        product_list = product_model.product_objects.filter(
+            nutriscore_grade__lt=nutriscore).order_by('nutriscore_grade')
+
+        return product_list
+
+    def get_product_by_name(self, product_name):
+        product_model = apps.get_model('core', 'Product')
+
+        product = product_model.product_objects.get(product_name=product_name)
+
+        return product
+    
+

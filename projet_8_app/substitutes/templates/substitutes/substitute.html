@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Produit trouvé</h1>
+
+    <ul>
+        <li>{{product.product_name}}</li>
+        <li>{{product.nutriscore_grade}}</li>
+        <li>
+            {% for category in product.categories.all %}
+            {{category}}
+            {% endfor %}
+        </li>
+        <li>{{product.product_description}}</li>
+        <li>{{product.off_url}}</li>
+    </ul>
+
+    <h1> Substitut trouvé</h1>
+
+    {% for substitute in substitute_list %}
+    <ul>
+        <li>{{substitute.product_name}}</li>
+        <li>{{substitute.nutriscore_grade}}</li>
+
+        <li>
+            {% for category in substitute.categories.all %}
+            {{category}}
+
+            {% endfor %}
+
+        </li>
+
+        <li>{{substitute.product_description}}</li>
+        <li>{{substitute.off_url}}</li>
+    </ul>
+    {% endfor %}
+
+</body>
+
+</html>
