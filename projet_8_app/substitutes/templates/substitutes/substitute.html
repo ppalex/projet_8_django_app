@@ -2,23 +2,20 @@
 
 {% block header %}
 
-<header class="substitute">
+<header>
 
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center text-center">
             <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-white font-weight-bold">Du gras, oui, mais de qualité !
+                <h1 class="text-uppercase text-black font-weight-bold">{{product.product_name}}
                 </h1>
-                <h2 class="text-uppercase text-white font-weight-bold">
-                    Trouvez un produit de substitution pour ceux que vous consommez tous les jours.
+                <h2 class="text-uppercase text-black font-weight-bold">
+                    XX produit(s) trouvé(s)
                 </h2>
                 <hr class="divider my-4" />
             </div>
-          
-            </div>
         </div>
-    </div>
-
+    </div>   
 
 </header>
 
@@ -27,60 +24,43 @@
 
 {% block content %}
 
-<h1>Produit trouvé</h1>
 
-<ul>
-    <li>{{product.product_name}}</li>
-    <li>{{product.nutriscore_grade}}</li>
-    <li>
-        {% for category in product.categories.all %}
-        {{category}}
-        {% endfor %}
-    </li>
-    <li>{{product.product_description}}</li>
-    <li>{{product.off_url}}</li>
-</ul>
-
-<h1> Substitut trouvé</h1>
-
-{% for substitute in substitute_list %}
-<ul>
-    <li>{{substitute.product_name}}</li>
-    <li>{{substitute.nutriscore_grade}}</li>
-
-    <li>
-        {% for category in substitute.categories.all %}
-        {{category}}
-
-        {% endfor %}
-
-    </li>
-
-    <li>{{substitute.product_description}}</li>
-    <li>{{substitute.off_url}}</li>
-</ul>
-{% endfor %}
-
-          
-          
-  <!-- Services-->
-  <section class="page-section" id="services">
+<!-- Substitute cards-->
+<section class="page-section" id="services">
     <div class="container">
         <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par:</h2>
         <hr class="divider my-4" />
-        <div class="row">
-            {% for substitute in substitute_list %}
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="mt-5">
-                    <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                    <h3 class="h4 mb-2">{{substitute.product_name}}</h3>
-                    <p class="text-muted mb-0">{{substitute.product_description}}</p>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    {% for substitute in substitute_list %}
+
+
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
+                                src={{substitute.image_url}} data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">{{substitute.product_name}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Sauvegarder</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">{{substitute.nutriscore_grade}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-            </div>            
-            {% endfor %}       
-          
+
+            </div>
         </div>
-    </div>
+
+
+
 </section>
 
 

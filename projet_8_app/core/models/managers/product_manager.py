@@ -9,7 +9,9 @@ from core.models.managers.category_manager import CategoryManager
 
 class ProductManager(models.Manager):
     
-    def create_product(self, barcode, product_name, nutriscore_grade, product_description, off_url):
+    def create_product(self, barcode, product_name, 
+                            nutriscore_grade, product_description,
+                            off_url, image_url):
         
         product_model = apps.get_model('core', 'Product')
         
@@ -18,7 +20,8 @@ class ProductManager(models.Manager):
                                     product_name=product_name,
                                     nutriscore_grade=nutriscore_grade,
                                     product_description=product_description,
-                                    off_url=off_url)
+                                    off_url=off_url,
+                                    image_url=image_url)
 
             return product
 
@@ -34,13 +37,14 @@ class ProductManager(models.Manager):
                                             element.product_name,
                                             element.nutriscore_grade,
                                             element.description,
-                                            element.off_url)
+                                            element.off_url,
+                                            element.image_url)
             if product is not None:                
                 stores = []
                 product.save()      
                
-                categories = CategoryManager.get_categories_objects(element.categories)
-                stores = StoreManager.get_stores_objects(element.stores)
+                categories = CategoryManager().get_categories_objects(element.categories)
+                stores = StoreManager().get_stores_objects(element.stores)
 
                 product.categories.add(*categories)
                 product.stores.add(*stores)

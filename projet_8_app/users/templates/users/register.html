@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>S'enregister</title>
-</head>
-<body>
+{% extends "core/base.html" %}
 
-    {% if form.erros %}
-    <p>Erreur</p>
-    {% endif %}
+{% block header %}
 
+<header>
     <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Register">
+        <input type="submit" value="S'enregistrer">
     </form>
-    
-</body>
-</html>
+</header>
+
+{% endblock %}

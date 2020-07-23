@@ -11,6 +11,7 @@ def initialize_job():
     openfoodfact_manager.download_product()
 
     product_list = openfoodfact_manager.data
+    # CategoryManager().insert_categories_db(product_list)
     ProductManager().insert_product_db(product_list)
     
     

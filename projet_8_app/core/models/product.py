@@ -14,6 +14,7 @@ class Product(models.Model):
     nutriscore_grade = models.CharField(max_length=4)
     product_description = models.TextField()
     off_url = models.CharField(max_length=255)
+    image_url = models.CharField(max_length=255, default=None)
     
     categories = models.ManyToManyField(Category)
     stores = models.ManyToManyField(Store)
@@ -92,7 +93,8 @@ class ProductCleaner:
                 'categories': product.get('categories', "").split(','),
                 'stores': product.get('stores_tags', []),
                 'description': product.get('ingredients_text_debug', None),
-                'off_url': product.get('url', None)})
+                'off_url': product.get('url', None),
+                'image_url': product.get('image_url', None)})
         
         return product_cleaner
 
