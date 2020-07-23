@@ -3,27 +3,25 @@
 {% block header %}
 
 <header>
-
-    <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-black font-weight-bold">{{product.product_name}}
-                </h1>
-                <h2 class="text-uppercase text-black font-weight-bold">
-                    XX produit(s) trouvé(s)
-                </h2>
-                <hr class="divider my-4" />
+    <div class="card bg-light">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-10 align-self-end">
+                    <h1 class="text-uppercase text-black font-weight-bold">{{product.product_name}}
+                    </h1>
+                    <h2 class="text-uppercase text-black font-weight-bold">
+                        XX produit(s) trouvé(s)
+                    </h2>
+                </div>
             </div>
         </div>
-    </div>   
-
+    </div>
 </header>
 
 {% endblock header %}
 
 
 {% block content %}
-
 
 <!-- Substitute cards-->
 <section class="page-section" id="services">
@@ -34,8 +32,6 @@
             <div class="container">
                 <div class="row">
                     {% for substitute in substitute_list %}
-
-
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
                             <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
@@ -43,11 +39,11 @@
                             <div class="card-body">
                                 <p class="card-text">{{substitute.product_name}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-secondary">Sauvegarder</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
+
+                                    <i class="far fa-save" style='font-size:30px'></i>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Sauvegarder</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Détail</button>
+
                                     <small class="text-muted">{{substitute.nutriscore_grade}}</small>
                                 </div>
                             </div>
@@ -58,9 +54,6 @@
 
             </div>
         </div>
-
-
-
 </section>
 
 

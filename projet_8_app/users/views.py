@@ -28,7 +28,9 @@ class RegisterView(View):
             user = authenticate(username=username, password=password)
             messages.success(request, "Votre compte a été créé")
 
-            return redirect('login')
+            return redirect('')
+
+        return self.get(request)
 
 
 
