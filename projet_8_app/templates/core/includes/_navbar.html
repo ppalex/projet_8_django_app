@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="">
     <div class="container">
         <a class="navbar-brand  js-scroll-trigger" href="/">
-            <img src="{% static 'core/assets/img/logo.png' %}" class="img-fluid" style="max-width: 30%;">
+            <img src="{% static 'core/assets/img/logo.png' %}" class="img-fluid" style="max-width: 50px;">
             Pur Beurre
          </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -11,10 +11,21 @@
             aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+                <li>
+                    <a class="nav-link js-scroll-trigger">
+                        <form  action="{% url 'substitute' %}" method='POST' role='form'>
+                            {% csrf_token %}
+                            {{ form.text}}                           
+                            <button class="btn btn btn-secondary my-2 my-sm-0" type="submit">GO</button>
+                        </form>
+                    </a>                   
+                </li>
                 
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href=""><i class='fas fa-carrot' style='font-size:30px'></i></a></li>
+               
                 
                 {% if user.is_authenticated %}
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href=""><i class='fas fa-carrot' style='font-size:30px'></i></a></li>
                 <li class="nav-item"> <a class="nav-link js-scroll-trigger" href=""><i class='fas fa-user' style='font-size:30px'></i></a></li>
                 <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="/logout"><i class="fas fa-sign-out-alt" style='font-size:30px'></i></a></li>
                 {% else %}

@@ -67,5 +67,13 @@ class ProductManager(models.Manager):
         product = product_model.product_objects.get(product_name=product_name)
 
         return product
+
+
+    def get_product_by_barcode(self, barcode):
+        product_model = apps.get_model('core', 'Product')
+
+        product = product_model.product_objects.get(barcode=barcode)
+
+        return product
     
 

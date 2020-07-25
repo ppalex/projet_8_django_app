@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+
 from .forms import SubstituteSearchForm
 from django.views import View
 
@@ -25,3 +26,4 @@ class SubstituteView(View):
             context['substitute_list'] = substitute_list
                                 
             return render(request, self.template_name, context)
+

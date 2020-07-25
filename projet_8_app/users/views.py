@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.contrib.auth.views import LoginView
 from django.views import View
 
 class RegisterView(View):
@@ -28,9 +31,15 @@ class RegisterView(View):
             user = authenticate(username=username, password=password)
             messages.success(request, "Votre compte a été créé")
 
-            return redirect('')
+            return redirect('index')
 
         return self.get(request)
 
+
+
+class LoginView(SuccessMessageMixin, LoginView):
+    template_name = 'auth/login.html'
+    
+    success_message = "You were successfully logged in"
 
 
