@@ -43,3 +43,6 @@ class LoginView(SuccessMessageMixin, LoginView):
     success_message = "You were successfully logged in"
 
 
+
+class ProfileView(View):
+    pass

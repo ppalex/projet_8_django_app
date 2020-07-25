@@ -18,10 +18,10 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 from core.views import index
-from users.views import RegisterView, LoginView
+from users.views import RegisterView, LoginView, ProfileView
 
 from substitutes.views import SubstituteView
-from products.views import ProductView
+from products.views import ProductView, FavouriteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +29,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('substitute/', SubstituteView.as_view(), name='substitute'),
-    path('product/<int:barcode>', ProductView.as_view(), name='product')
+    path('product/<int:barcode>', ProductView.as_view(), name='product'),
+    path('favourites/', FavouriteView.as_view(), name='favourite')
 ]

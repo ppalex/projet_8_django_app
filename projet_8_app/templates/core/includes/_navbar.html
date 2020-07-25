@@ -20,17 +20,16 @@
                             <button class="btn btn btn-secondary my-2 my-sm-0" type="submit">GO</button>
                         </form>
                     </a>                   
-                </li>
-                
+                </li>         
                
                 
                 {% if user.is_authenticated %}
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href=""><i class='fas fa-carrot' style='font-size:30px'></i></a></li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href=""><i class='fas fa-user' style='font-size:30px'></i></a></li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="/logout"><i class="fas fa-sign-out-alt" style='font-size:30px'></i></a></li>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'favourite' %}"><i class='fas fa-carrot' style='font-size:30px'></i></a></li>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'profile' %}"><i class='fas fa-user' style='font-size:30px'></i></a></li>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" style='font-size:30px'></i></a></li>
                 {% else %}
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="/register"><i class="fas fa-user-plus" style='font-size:30px'></i></a></li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="/login"><i class="fas fa-sign-in-alt" style='font-size:30px'></i></a></li>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'register' %}"><i class="fas fa-user-plus" style='font-size:30px'></i></a></li>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" style='font-size:30px'></i></a></li>
                 {% endif %}
             </ul>
         </div>

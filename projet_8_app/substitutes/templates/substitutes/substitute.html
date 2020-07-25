@@ -39,18 +39,23 @@
                             <div class="card-body">
                                 <p class="card-text">{{substitute.product_name}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group" role="group">
 
-                                    <div class="btn-group" role="group" action="{% url 'product' barcode=substitute.barcode %}" method="post" >
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Sauvegarder</button>
-
+                                        {% if user.is_authenticated %}
+                                        <form action="{% url 'substitute_save' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" name="favourite_save" value="Sauvegarder"
+                                                class="btn btn-sm btn-outline-secondary" />
+                                        </form>
+                                        {% endif %}
 
                                         <form action="{% url 'product' barcode=substitute.barcode %}" method="post">
                                             {% csrf_token %}
                                             <input type="submit" name="product_detail" value="Détail"
-                                                class="btn btn-sm btn-outline-secondary"/>
+                                                class="btn btn-sm btn-outline-secondary" />
                                         </form>
-                                        
-                                    </div>                                 
+
+                                    </div>
 
                                     <small class="text-muted">{{substitute.nutriscore_grade}}</small>
                                 </div>
