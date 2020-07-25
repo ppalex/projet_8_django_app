@@ -15,13 +15,3 @@ class ProductView(View):
         return render(request, self.template_name, context)
 
 
-class FavouriteView(View):
-
-    template_name = 'products/favourites.html'
-
-
-    def get(self, request):
-        
-        context = {}
-
-        return render(request, self.template_name, context)

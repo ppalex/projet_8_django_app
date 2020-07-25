@@ -42,7 +42,7 @@
                                     <div class="btn-group" role="group">
 
                                         {% if user.is_authenticated %}
-                                        <form action="{% url 'substitute_save' %}" method="post">
+                                        <form action="{% url 'favourite' %}" method="post">
                                             {% csrf_token %}
                                             <input type="submit" name="favourite_save" value="Sauvegarder"
                                                 class="btn btn-sm btn-outline-secondary" />

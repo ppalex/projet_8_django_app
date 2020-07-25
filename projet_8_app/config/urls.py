@@ -21,7 +21,8 @@ from core.views import index
 from users.views import RegisterView, LoginView, ProfileView
 
 from substitutes.views import SubstituteView
-from products.views import ProductView, FavouriteView
+from products.views import ProductView
+from favourites.views import FavouriteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

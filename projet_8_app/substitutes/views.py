@@ -26,15 +26,3 @@ class SubstituteView(View):
             context['substitute_list'] = substitute_list
                                 
             return render(request, self.template_name, context)
-
-
-
-    def substitute_save(self, request):
-
-        if request.method == 'POST':
-            if request.POST['substitute_save'] == 'Sauvegarder':
-                print('save in substitute in DB')
-
-
-        
-        return render(request, self.template_name)
