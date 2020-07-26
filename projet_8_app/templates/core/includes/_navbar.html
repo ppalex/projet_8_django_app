@@ -14,14 +14,12 @@
 
                 <li>
                     <a class="nav-link js-scroll-trigger">
-                        <form  action="{% url 'substitute' %}" method='POST' role='form'>
-                            {% csrf_token %}
-                            {{ form.text}}                           
+                        <form  action="{% url 'substitute' %}" method='GET' role='form'>                           
+                            {{ form.product }}                           
                             <button class="btn btn btn-secondary my-2 my-sm-0" type="submit">GO</button>
                         </form>
                     </a>                   
-                </li>         
-               
+                </li>               
                 
                 {% if user.is_authenticated %}
                 <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{% url 'favourite' %}"><i class='fas fa-carrot' style='font-size:30px'></i></a></li>

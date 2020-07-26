@@ -13,14 +13,10 @@
             </div>
             <div class="col-lg-8 align-self-baseline">
                 <div class="search-container">
-                    <form action="{% url 'substitute' %}" method='POST' role='form'>
-
-                        {% csrf_token %}
-                        {{ form.text }}
+                    <form action="{% url 'substitute' %}" method='GET' role='form'>                       
+                        {{ form.product}} 
                         <button class="btn btn-light" type="submit">Chercher</button>
-                    </form>
-
-                   
+                    </form>                   
                 </div>
             </div>
         </div>

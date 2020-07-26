@@ -1,24 +1,31 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views import View
+
+from django.core.paginator import Paginator
+
+from core.models.managers.product_manager import ProductManager
 
 class FavouriteView(View):
 
-    
+
+
     def get(self, request):
-        template_name = 'favourites/favourites.html'       
-        
-        context = {}
+        pass
 
-        return render(request, template_name, context)
-
-
+    
     def post(self, request):
         template_name = 'substitutes/substitute.html'
         context = {}
 
+        product_barcode = request.POST.get('product_barcode')
+        product_name = request.POST.get('product_name')
+        substitute_barcode = request.POST.get('substitute_barcode')        
+
         if request.method == 'POST':
             if request.POST['favourite_save'] == 'Sauvegarder':
-                print('save in substitute in DB')
-                
+               
+                product = ProductManager().get_product_by_barcode(product_barcode)
+                substitute = ProductManager().get_product_by_barcode(substitute_barcode)
+                product.substitutes.add(substitute)
         
-        return redirect('substitute')
+        return redirect(f"/substitute/?product={product_name}") 

@@ -46,12 +46,16 @@
                                             {% csrf_token %}
                                             <input type="submit" name="favourite_save" value="Sauvegarder"
                                                 class="btn btn-sm btn-outline-secondary" />
+                                            <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
+                                            <input type="hidden" name="product_name" value="{{ product.product_name }}">
+                                            <input type="hidden" name="substitute_barcode"
+                                                value="{{ substitute.barcode }}">
                                         </form>
                                         {% endif %}
 
-                                        <form action="{% url 'product' barcode=substitute.barcode %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="submit" name="product_detail" value="Détail"
+                                        <form action="{% url 'product' barcode=substitute.barcode %}" method="get">
+
+                                            <input type="submit" value="Détail"
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
 

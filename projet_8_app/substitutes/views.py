@@ -12,17 +12,32 @@ class SubstituteView(View):
     search_substitute_form = SubstituteSearchForm
     template_name = 'substitutes/substitute.html'
 
-    def post(self, request):
-        form = self.search_substitute_form(request.POST)
-        context = {'form' : form}
 
-        if form.is_valid():
+    def get(self, request):
+       
+        context = {}        
+    
+        product_name = request.GET.get('product')
+        
+        product, substitute_list = find_substitute(product_name)
+
+        context['product'] = product
+        context['substitute_list'] = substitute_list
+                            
+        return render(request, self.template_name, context)
+
+   
+    # def post(self, request):
+    #     form = self.search_substitute_form(request.POST)
+    #     context = {'form' : form}
+
+    #     if form.is_valid():
          
-            product_name = form.cleaned_data['text']
+    #         product_name = form.cleaned_data['text']
             
-            product, substitute_list = find_substitute(product_name)
+    #         product, substitute_list = find_substitute(product_name)
 
-            context['product'] = product
-            context['substitute_list'] = substitute_list
+    #         context['product'] = product
+    #         context['substitute_list'] = substitute_list
                                 
-            return render(request, self.template_name, context)
+    #         return render(request, self.template_name, context)

@@ -8,7 +8,7 @@ class ProductView(View):
     template_name = 'products/product_detail.html'
 
 
-    def post(self, request, barcode):
+    def get(self, request, barcode):
         product = ProductManager().get_product_by_barcode(barcode)
         context = {'product' : product}
 
