@@ -4,6 +4,7 @@ from django.db import models
 
 from .category import Category
 from .store import Store
+from .user import User
 
 from core.models.managers.product_manager import ProductManager
 
@@ -19,6 +20,7 @@ class Product(models.Model):
     categories = models.ManyToManyField(Category)
     stores = models.ManyToManyField(Store)
     substitutes = models.ManyToManyField("self", symmetrical=False)
+    favourites = models.ManyToManyField(User)
 
     product_objects = ProductManager()    
 

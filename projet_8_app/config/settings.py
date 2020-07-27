@@ -79,7 +79,7 @@ STATICFILES_DIRS = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
+AUTH_USER_MODEL = 'core.User'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 

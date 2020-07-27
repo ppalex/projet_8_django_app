@@ -7,16 +7,18 @@ from core.models.managers.product_manager import ProductManager
 
 class FavouriteView(View):
 
-
+    template_name = 'favourites/favourites.html'
 
     def get(self, request):
-        pass
-
+        
+        context = {}
+        return render(request, self.template_name, context)
     
     def post(self, request):
-        template_name = 'substitutes/substitute.html'
+        
         context = {}
 
+        current_user = request.user
         product_barcode = request.POST.get('product_barcode')
         product_name = request.POST.get('product_name')
         substitute_barcode = request.POST.get('substitute_barcode')        
@@ -26,6 +28,7 @@ class FavouriteView(View):
                
                 product = ProductManager().get_product_by_barcode(product_barcode)
                 substitute = ProductManager().get_product_by_barcode(substitute_barcode)
-                product.substitutes.add(substitute)
+                
+                current_user.product_set.add(product)
         
-        return redirect(f"/substitute/?product={product_name}") 
+        return redirect(f"/substitute/?product={product_name}")
