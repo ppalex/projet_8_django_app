@@ -11,7 +11,14 @@ class FavouriteView(View):
 
     def get(self, request):
         
-        context = {}
+        
+
+        current_user = request.user
+
+        favourites = current_user.product_set.all()
+
+        context = {'favourites': favourites}
+
         return render(request, self.template_name, context)
     
     def post(self, request):
@@ -29,6 +36,6 @@ class FavouriteView(View):
                 product = ProductManager().get_product_by_barcode(product_barcode)
                 substitute = ProductManager().get_product_by_barcode(substitute_barcode)
                 
-                current_user.product_set.add(product)
+                current_user.product_set.add(substitute)
         
         return redirect(f"/substitute/?product={product_name}")

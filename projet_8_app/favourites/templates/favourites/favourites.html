@@ -31,20 +31,20 @@
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row">
-                    {% for substitute in substitute_list %}
+                    {% for favourite in favourites %}
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
                             <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
-                                src={{substitute.image_url}} data-holder-rendered="true">
+                                src={{favourite.image_url}} data-holder-rendered="true">
                             <div class="card-body">
-                                <p class="card-text">{{substitute.product_name}}</p>
+                                <p class="card-text">{{favourite.product_name}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
 
                                     <div class="btn-group" role="group" action="" method="post" >
                                         <button type="button" class="btn btn-sm btn-outline-secondary">Supprimer</button>
 
 
-                                        <form action="{% url 'product' barcode=substitute.barcode %}" method="post">
+                                        <form action="{% url 'product' barcode=favourite.barcode %}" method="post">
                                             {% csrf_token %}
                                             <input type="submit" name="product_detail" value="Détail"
                                                 class="btn btn-sm btn-outline-secondary"/>
@@ -52,7 +52,7 @@
                                         
                                     </div>                                 
 
-                                    <small class="text-muted">{{substitute.nutriscore_grade}}</small>
+                                    <small class="text-muted">{{favourite.nutriscore_grade}}</small>
                                 </div>
                             </div>
                         </div>
