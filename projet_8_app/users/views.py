@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+
+from .forms import CustomUserCreationForm
 
 from django.contrib.auth.views import LoginView
 from django.views import View
 
 class RegisterView(View):
 
-    register_form = UserCreationForm
+    register_form = CustomUserCreationForm
     template_name = 'users/register.html'
 
     def get(self, request):
@@ -21,10 +22,14 @@ class RegisterView(View):
 
     def post(self, request):
         form = self.register_form(request.POST)
+        print('register')
 
+        print(form)
         if form.is_valid():
-            form.save()           
 
+            print('form valided')
+            form.save()           
+            print('form saved')
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
 
@@ -40,7 +45,7 @@ class RegisterView(View):
 class LoginView(SuccessMessageMixin, LoginView):
     template_name = 'auth/login.html'
     
-    success_message = "You were successfully logged in"
+    success_message = "You were successfully logged in!"
 
    
 
