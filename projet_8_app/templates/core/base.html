@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <title>Pur beurre</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -24,9 +24,11 @@
     <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top">    
 
     {% include "core/includes/_navbar.html" %}
+   
+    {% include "core/includes/_messages.html" %}
 
     {% block header %}
 
@@ -34,16 +36,13 @@
 
     {% endblock header %}
 
-
-
-
     {% block content %}
 
     {% endblock content %}
 
     <!-- Contact -->
     {% include "core/contact.html" %}
-    
+
 </body>
 
 {% include "core/includes/_footer.html" %}

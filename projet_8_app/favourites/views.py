@@ -5,14 +5,14 @@ from django.core.paginator import Paginator
 
 from core.models.managers.product_manager import ProductManager
 
+from django.contrib import messages
+
 class FavouriteView(View):
 
     template_name = 'favourites/favourites.html'
 
-    def get(self, request):
+    def get(self, request):     
         
-        
-
         current_user = request.user
 
         favourites = current_user.product_set.all()
@@ -37,5 +37,6 @@ class FavouriteView(View):
                 substitute = ProductManager().get_product_by_barcode(substitute_barcode)
                 
                 current_user.product_set.add(substitute)
+                messages.info(request, "Le produit a été ajouté à vos favoris")
         
         return redirect(f"/substitute/?product={product_name}")
