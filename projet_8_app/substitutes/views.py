@@ -21,8 +21,11 @@ class SubstituteView(View):
         
         product, substitute_list = find_substitute(product_name)
 
+        num_substitutes = len(substitute_list)
+
         context['product'] = product
         context['substitute_list'] = substitute_list
+        context['num_substitutes'] = num_substitutes
                             
         return render(request, self.template_name, context)
 
