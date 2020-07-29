@@ -50,6 +50,17 @@
                                             <input type="hidden" name="product_name" value="{{ product.product_name }}">
                                             <input type="hidden" name="substitute_barcode" value="{{ substitute.barcode }}">
                                         </form>
+
+                                        
+                                        {% else %}
+
+                                        <form action="{% url 'login' %}" method="get">
+                                            
+                                            <input type="submit" name="action" value="Sauvegarder"
+                                                class="btn btn-sm btn-outline-secondary" />
+    
+                                        </form>
+
                                         {% endif %}
 
                                         <form action="{% url 'product' barcode=substitute.barcode %}" method="get">
