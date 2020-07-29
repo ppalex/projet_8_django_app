@@ -40,16 +40,23 @@
                                 <p class="card-text">{{favourite.product_name}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
 
-                                    <div class="btn-group" role="group" action="" method="post" >
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Supprimer</button>
+                                    <div class="btn-group" role="group">
 
+                                        <form action="{% url 'favourite' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="submit" name="action" value="Supprimer"
+                                                class="btn btn-sm btn-outline-secondary" />
+                                            
+                                            <input type="hidden" name="substitute_barcode" value="{{ favourite.barcode }}">
+                                        </form>
+                                       
 
                                         <form action="{% url 'product' barcode=favourite.barcode %}" method="post">
                                             {% csrf_token %}
                                             <input type="submit" name="product_detail" value="Détail"
-                                                class="btn btn-sm btn-outline-secondary"/>
-                                        </form>                                        
-                                    </div>                                 
+                                                class="btn btn-sm btn-outline-secondary" />
+                                        </form>
+                                    </div>
 
                                     <small class="text-muted">{{favourite.nutriscore_grade}}</small>
                                 </div>

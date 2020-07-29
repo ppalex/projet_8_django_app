@@ -16,7 +16,7 @@ class RegisterView(View):
     template_name = 'users/register.html'
 
     def get(self, request):
-        form = self.register_form()
+        form = self.register_form(request.GET)
         context = {'form' : form}
 
         return render(request, self.template_name, context)
@@ -25,7 +25,7 @@ class RegisterView(View):
         form = self.register_form(request.POST)   
         
         if form.is_valid():
-           
+            
             form.save()           
             
             username = form.cleaned_data['username']
@@ -51,7 +51,7 @@ class CustomLogoutView(SuccessMessageMixin, LogoutView):
     success_url = '/'
     success_message = "Vous êtes déconnectés"
 
-    
+
 
 class ProfileView(View):
     pass

@@ -44,12 +44,11 @@
                                         {% if user.is_authenticated %}
                                         <form action="{% url 'favourite' %}" method="post">
                                             {% csrf_token %}
-                                            <input type="submit" name="favourite_save" value="Sauvegarder"
+                                            <input type="submit" name="action" value="Sauvegarder"
                                                 class="btn btn-sm btn-outline-secondary" />
                                             <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
                                             <input type="hidden" name="product_name" value="{{ product.product_name }}">
-                                            <input type="hidden" name="substitute_barcode"
-                                                value="{{ substitute.barcode }}">
+                                            <input type="hidden" name="substitute_barcode" value="{{ substitute.barcode }}">
                                         </form>
                                         {% endif %}
 
@@ -58,9 +57,7 @@
                                             <input type="submit" value="Détail"
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
-
                                     </div>
-
                                     <small class="text-muted">{{substitute.nutriscore_grade}}</small>
                                 </div>
                             </div>

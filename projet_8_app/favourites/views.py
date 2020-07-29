@@ -12,7 +12,7 @@ class FavouriteView(View):
     template_name = 'favourites/favourites.html'
 
     def get(self, request):     
-        
+
         current_user = request.user
 
         favourites = current_user.product_set.all()
@@ -26,17 +26,30 @@ class FavouriteView(View):
         context = {}
 
         current_user = request.user
-        product_barcode = request.POST.get('product_barcode')
-        product_name = request.POST.get('product_name')
-        substitute_barcode = request.POST.get('substitute_barcode')        
-
+        
         if request.method == 'POST':
-            if request.POST['favourite_save'] == 'Sauvegarder':
-               
-                product = ProductManager().get_product_by_barcode(product_barcode)
+            
+            if request.POST['action'] == 'Sauvegarder':              
+                product_barcode = request.POST.get('product_barcode')
+                product_name = request.POST.get('product_name')
+                substitute_barcode = request.POST.get('substitute_barcode')        
                 substitute = ProductManager().get_product_by_barcode(substitute_barcode)
                 
                 current_user.product_set.add(substitute)
                 messages.info(request, "Le produit a été ajouté à vos favoris")
+
+                return redirect(f"/substitute/?product={product_name}")
+
+            elif request.POST['action'] == 'Supprimer':
+                
+                substitute_barcode = request.POST.get('substitute_barcode')        
+                substitute = ProductManager().get_product_by_barcode(substitute_barcode)
+                current_user.product_set.remove(substitute)
+                messages.info(request, "Le produit a été retiré à vos favoris")
+
+                return redirect(f"/favourites/")
+            
+            return redirect(f"/")
+
         
-        return redirect(f"/substitute/?product={product_name}")
+        
