@@ -48,21 +48,18 @@
                                                 class="btn btn-sm btn-outline-secondary" />
                                             <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
                                             <input type="hidden" name="product_name" value="{{ product.product_name }}">
-                                            <input type="hidden" name="substitute_barcode" value="{{ substitute.barcode }}">
+                                            <input type="hidden" name="substitute_barcode"
+                                                value="{{ substitute.barcode }}">
                                         </form>
 
-                                        
                                         {% else %}
 
                                         <form action="{% url 'login' %}" method="get">
-                                            
                                             <input type="submit" name="action" value="Sauvegarder"
                                                 class="btn btn-sm btn-outline-secondary" />
-    
                                         </form>
 
                                         {% endif %}
-
                                         <form action="{% url 'product' barcode=substitute.barcode %}" method="get">
 
                                             <input type="submit" value="Détail"
@@ -74,8 +71,33 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                    {% endfor %}                   
+
+                 
                 </div>
+                {% if substitute_pages.has_other_pages %}
+                <ul class="pagination">
+                    {% if substitutes_page.has_previous %}
+                    <li><a  href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.previous_page_number}}">&laquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in substitute_pages.paginator.page_range %}
+
+                        {% if substitute_pages.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="{% url 'substitute' %}?product={{product.product_name}}&page={{i}}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if substitute_pages.has_next %}
+                    <li><a href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.next_page_number}}">&raquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
 
             </div>
         </div>
