@@ -16,8 +16,12 @@
             <div class="col-lg-8 align-self-baseline">
                 <div class="search-container">
                     <form action="{% url 'substitute' %}" method='GET' role='form'>
-                        {{ search_bar_form }} 
-                        <button class="btn btn-light" type="submit">Chercher</button>
+                        <div class="input-group-append">
+                            {{ search_bar_form }} 
+                            <button class="btn btn-light" type="submit">Chercher</button>
+
+                        </div>
+                      
                     </form>
                 </div>
             </div>
