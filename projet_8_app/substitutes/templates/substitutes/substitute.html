@@ -42,15 +42,27 @@
                                     <div class="btn-group" role="group">
 
                                         {% if user.is_authenticated %}
-                                        <form action="{% url 'favourite' %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="submit" name="action" value="Sauvegarder"
-                                                class="btn btn-sm btn-outline-secondary" />
-                                            <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
-                                            <input type="hidden" name="product_name" value="{{ product.product_name }}">
-                                            <input type="hidden" name="substitute_barcode"
-                                                value="{{ substitute.barcode }}">
-                                        </form>
+                                            {% if substitute in user.product_set.all %}
+
+                                            <form action="{% url 'login' %}" method="get">
+                                                <input type="submit" name="action" value="Sauvegardé" 
+                                                    class="btn btn-sm btn-outline-secondary" disabled>
+                                            </form>
+    
+
+                                            {% else %}
+
+                                            <form action="{% url 'favourite' %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" name="action" value="Sauvegarder"
+                                                    class="btn btn-sm btn-outline-secondary" />
+                                                <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
+                                                <input type="hidden" name="product_name" value="{{ product.product_name }}">
+                                                <input type="hidden" name="substitute_barcode"
+                                                    value="{{ substitute.barcode }}">
+                                            </form>
+
+                                            {% endif %}
 
                                         {% else %}
 
@@ -71,40 +83,45 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}                   
+                    {% endfor %}
 
-                 
+
                 </div>
                 {% if substitute_pages.has_other_pages %}
                 <nav aria-label="...">
 
                     <ul class="pagination">
                         {% if substitute_pages.has_previous %}
-                        <li class="page-item"><a  class="page-link" 
-                            href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.previous_page_number}}">Précédent</a></li>
+                        <li class="page-item"><a class="page-link"
+                                href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.previous_page_number}}">Précédent</a>
+                        </li>
                         {% else %}
                         <li class="disabled"><span class="page-link">Précédent</span></li>
                         {% endif %}
                         {% for i in substitute_pages.paginator.page_range %}
-    
-                            {% if substitute_pages.number == i %}
-                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                            {% else %}
-                            <li class="page-item"><a class="page-link" href="{% url 'substitute' %}?product={{product.product_name}}&page={{i}}">{{ i }}</a></li>
-                            {% endif %}
+
+                        {% if substitute_pages.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }} <span
+                                    class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link"
+                                href="{% url 'substitute' %}?product={{product.product_name}}&page={{i}}">{{ i }}</a>
+                        </li>
+                        {% endif %}
                         {% endfor %}
-    
+
                         {% if substitute_pages.has_next %}
-                        <li class="page-item"><a class="page-link"href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.next_page_number}}">Suivant</a></li>
+                        <li class="page-item"><a class="page-link"
+                                href="{% url 'substitute' %}?product={{product.product_name}}&page={{substitute_pages.next_page_number}}">Suivant</a>
+                        </li>
                         {% else %}
                         <li class="disabled"><span class="page-link">Suivant</span></li>
                         {% endif %}
                     </ul>
                     {% endif %}
+                </nav>
 
-                </nav>                
-
-            </div>
+            </div>           
         </div>
 </section>
 
