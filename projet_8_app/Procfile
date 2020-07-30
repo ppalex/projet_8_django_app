@@ -1,1 +1,0 @@
-web: gunicorn projet_8_app.config.wsgi
