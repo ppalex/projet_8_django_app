@@ -86,6 +86,8 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 AUTH_USER_MODEL = 'core.User'

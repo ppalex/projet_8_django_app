@@ -134,10 +134,3 @@ class ProductCleaner:
         """
         setattr(product, 'categories', product.categories.split(','))
 
-
-class ProductInventory:
-    def __init__(self):
-        self.inventory = []
-
-    def add_product(self, product):
-        self.inventory.append(product)

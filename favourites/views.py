@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views import View
+from django.urls import reverse
 
 from django.core.paginator import Paginator
 
@@ -42,6 +43,8 @@ class FavouriteView(View):
                 messages.info(request, "Le produit a été ajouté à vos favoris")
 
                 return redirect(f"/substitute/?product={product_name}")
+
+               
 
             elif request.POST['action'] == 'Supprimer':
                 

@@ -6,8 +6,6 @@ def find_substitute(product_name):
 
     product_nutriscore = product.nutriscore_grade
 
-
-
     substitute_list = ProductManager().get_all_product_by_nutriscore_inf(product_nutriscore)
     best_substitute_list = check_intersection(substitute_list, product)
 

@@ -34,4 +34,5 @@ urlpatterns = [
     path('substitute/', SubstituteView.as_view(), name='substitute'),
     path('product/<int:barcode>/', ProductView.as_view(), name='product'),
     path('favourites/', FavouriteView.as_view(), name='favourite')
+    
 ]

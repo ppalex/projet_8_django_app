@@ -3,10 +3,14 @@ from unittest import mock
 from django.conf import settings
 from django.test import TestCase
 
-from core.models.product import Product, requests, ProductDownloader, ProductCleaner, ProductInventory
+from core.models.product import Product, requests, ProductDownloader, ProductCleaner
 from core.models.payload import Payload
-from core.managers.product_manager import ProductManager
+from core.models.managers.product_manager import ProductManager
+from core.models.user import User
+from core.models.store import Store
+from core.models.category import Category
 
+# Test Product
 
 class ProductTestCase(TestCase):
     def setUp(self):
@@ -14,7 +18,8 @@ class ProductTestCase(TestCase):
                                 product_name="product_name",
                                 nutriscore_grade="A",
                                 product_description="Product description",
-                                off_url="www.off.com")        
+                                off_url="www.off.com",
+                                image_url="www.image_url.com")        
 
     def test_product_instance(self):        
        
@@ -24,33 +29,14 @@ class ProductTestCase(TestCase):
         self.assertEqual(product.product_name, "product_name")
         self.assertEqual(product.product_description, "Product description")
         self.assertEqual(product.off_url, "www.off.com")
+        self.assertEqual(product.image_url, "www.image_url.com")
 
 
     def test_str(self):
         product = Product.product_objects.get(barcode=123)
 
         self.assertEqual(str(product), "product_name")
-
-    # def test_create_product(self):
-
-    #     product_dic = [
-    #                     {
-    #                         'barcode':123,
-    #                         'product_name':"product_name",
-    #                         'nutriscore_grade':"A",
-    #                         'product_description':"Product description",
-    #                         'off_url':"www.off.com"}]
-        
-    #     product_list = Product.create_product(product_dic)
-
-    #     product = product_list[0]
-
-    #     self.assertEquals(True, isinstance(product, Product))
-    #     self.assertEqual(product.barcode, 123)
-    #     self.assertEqual(product.product_name, "product_name")
-    #     self.assertEqual(product.product_description, "Product description")
-    #     self.assertEqual(product.off_url, "www.off.com")
-        
+                 
         
 class ProductDownloaderTestCase(TestCase):    
      
@@ -121,20 +107,8 @@ class ProductCleanerTestCase(TestCase):
     def test_split_string(self):
         pass
 
-class ProductInventoryTestCase(TestCase):    
 
-    def test_add_product(self):
-
-        product = { "id": 123,
-                    "product_name": "Dolce pizza"}   
-
-        product_cleaner = ProductCleaner()
-        product_cleaner = product_cleaner.create(product, "pizza")
-        
-        product_inventory = ProductInventory()
-
-        product_inventory.add_product(product_cleaner)
-        self.assertEqual(len(product_inventory.inventory),1)    
+# Test Payload
 
 
 class PayloadTestCase(TestCase):
@@ -145,7 +119,7 @@ class PayloadTestCase(TestCase):
             tag_0=settings.PAYLOAD['tag_0'],
             tag_contains_0=settings.PAYLOAD['tag_contains_0'],
             tagtype_0=settings.PAYLOAD['tagtype_0'],
-            page_size=settings.PAYLOAD['page_size'],
+            page_size=1,
             json=settings.PAYLOAD['json'])            
         
         payload_formatted = {
@@ -160,4 +134,55 @@ class PayloadTestCase(TestCase):
         result = payload.get_payload_formatted()
         
         self.assertEqual(payload_formatted, result)
-            
+
+
+# Test Category
+
+# Test Store
+
+
+class StoreTestCase(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        Store.store_objects.create(store_name="store_name")
+
+
+    def test_store_name_label(self):
+        store = Store.store_objects.get(store_id='1')
+        store_name_label = store._meta.get_field('store_name').verbose_name
+
+        self.assertEquals(store_name_label, 'store name')
+
+   
+# Test User
+
+class UserTestCase(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        User.objects.create(username="APP",
+                            password="12345",
+                            email="app@gmail.com")
+
+
+    def test_username_label(self):
+        user = User.objects.get(user_id='1')
+        username_label = user._meta.get_field('username').verbose_name
+
+        self.assertEquals(username_label, 'username')
+
+    def test_password_label(self):
+        user = User.objects.get(user_id='1')
+        password_label = user._meta.get_field('password').verbose_name
+
+        self.assertEquals(password_label, 'password')
+    
+    def test_email_label(self):
+        user = User.objects.get(user_id='1')
+        email_label = user._meta.get_field('email').verbose_name
+
+        self.assertEquals(email_label, 'email')
+
+
+
