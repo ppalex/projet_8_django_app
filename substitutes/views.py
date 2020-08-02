@@ -44,32 +44,3 @@ class SubstituteView(View):
         return render(request, self.template_name, self.context)
 
 
-
-# class SubstituteListView(ListView):
-#     model = Product
-#     template_name = 'substitutes/substitute.html'
-#     paginate_by = 6
-#     context = {}
-
-
-#     def get_queryset(self):
-
-#         product_name = self.request.GET.get('product') 
-#         product, substitute_list = find_substitute(product_name)
-#         num_substitutes = len(substitute_list)
-
-#         self.context['product'] = product
-#         self.context['num_substitutes'] = num_substitutes   
-        
-#         self.context['substitute_list'] = substitute_list
-
-#         return product, substitute_list
-
-
-#     def get_context_data(self, **kwargs):
-#         context = super(SubstituteListView, self).get_context_data(**kwargs)
-#         context['form'] = SubstituteSearchForm()
-
-#         return context
-
-
