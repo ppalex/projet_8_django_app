@@ -28,6 +28,18 @@ class FavouriteViewTest(TestCase):
         response = self.client.get(reverse('favourite'))
         self.assertRedirects(response, '/login/?next=/favourites/')
 
+    def test_logged_in_accessible_by_name(self):
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('favourite'))
+        
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct template
+        self.assertTemplateUsed(response, 'favourites/favourites.html')
+
 
     def test_logged_in_uses_correct_template(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
