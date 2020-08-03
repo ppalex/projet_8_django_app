@@ -52,7 +52,7 @@
 
                                             {% else %}
 
-                                            <form action="{% url 'favourite' %}" method="post">
+                                            <form action="{% url 'favourite' %}" method="post" name="save_substitute">
                                                 {% csrf_token %}
                                                 <input type="submit" name="action" value="Sauvegarder"
                                                     class="btn btn-sm btn-outline-secondary" />
