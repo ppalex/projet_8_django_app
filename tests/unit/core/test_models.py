@@ -21,7 +21,7 @@ class ProductTestCase(TestCase):
                                 off_url="www.off.com",
                                 image_url="www.image_url.com")        
 
-    def test_product_instance(self):        
+    def test_product_instance(self):      
        
         product = Product.product_objects.get(barcode=123)
                
