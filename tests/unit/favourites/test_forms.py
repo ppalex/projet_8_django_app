@@ -5,15 +5,9 @@ from core.models.product import Product
 from substitutes.forms import SubstituteSearchForm
 from django.urls import reverse
 
-class SubstituteSearchFormTest(TestCase):
+       
+class DeleteFavouriteFormTest(TestCase):
     
-    def test_renew_form_date_field_label(self):
-        form = SubstituteSearchForm()
-        self.assertTrue(form.fields['product'].label == '')
-
-
-class SaveSubstituteFormTest(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
@@ -34,12 +28,11 @@ class SaveSubstituteFormTest(TestCase):
     def test_save_submit_button(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
 
-        response = self.client.post(self.client.get(reverse('favourite')), {'action':'Sauvegarder',
+        response = self.client.post(self.client.get(reverse('favourite')), {'action':'Supprimer',
                                                                             'substitute_barcode':0})
 
         response = self.client.get(reverse('favourite'))
-        self.assertEqual(response.status_code, 200)     
-
+        self.assertEqual(response.status_code, 200)
       
     
 
