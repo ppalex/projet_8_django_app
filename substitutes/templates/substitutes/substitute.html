@@ -33,7 +33,7 @@
                 <div class="row">
                     {% for substitute in substitute_pages %}
                     <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
+                        <div class="card mb-4 box-shadow" id="card_{{ substitute.barcode }}">
                             <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
                                 src={{substitute.image_url}} data-holder-rendered="true">
                             <div class="card-body">
@@ -55,7 +55,7 @@
                                             <form action="{% url 'favourite' %}" method="post" name="save_substitute">
                                                 {% csrf_token %}
                                                 <input type="submit" name="action" value="Sauvegarder"
-                                                    class="btn btn-sm btn-outline-secondary" />
+                                                    class="btn btn-sm btn-outline-secondary" id="save_substitute_{{ substitute.barcode }}"/>
                                                 <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
                                                 <input type="hidden" name="product_name" value="{{ product.product_name }}">
                                                 <input type="hidden" name="substitute_barcode"

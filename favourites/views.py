@@ -18,8 +18,7 @@ class FavouriteView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'favourites'
 
     template_name = 'favourites/favourites.html'
-    login_url = '/login/'
-    
+    login_url = '/login/'  
 
     
     # def get(self, request):     

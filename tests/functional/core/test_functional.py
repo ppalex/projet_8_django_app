@@ -1,7 +1,11 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from core.models.user import User
+from core.models.product import Product
+from core.models.category import Category
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+
+from django.urls import reverse
 
 import time
 
@@ -15,17 +19,21 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.driver = webdriver.Chrome(chrome_options=chrome_options)
-        cls.driver.implicitly_wait(5)
+        # cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
         cls.driver.close()
+        
 
     def setUp(self):
         
-        user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
+
+        user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')  
+        
+
 
     def test_user_can_connect(self):
         self.driver.get(self.live_server_url)
@@ -44,17 +52,5 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
 
         self.assertEqual(
             message.text,
-            "Vous êtes connectés testuser1",
-            
-        )
+            "Vous êtes connectés testuser1")
 
-        
-    def test_user_sees_substitute_list_view(self):
-        pass
-    
-
-    def test_user_sees_favourite_list_view(self):
-        pass
-
-    def test_user_sees_product_detail_view(self):
-        pass

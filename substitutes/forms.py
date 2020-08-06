@@ -7,4 +7,6 @@ class SubstituteSearchForm(forms.Form):
                                 widget=forms.TextInput(
                                     attrs={'class': 'form-control my-0 py-1 lime-border', 
                                         'placeholder': 'Recherche...',
-                                        'name': 'search', 'type':'text'}))
+                                        'name': 'search', 
+                                        'type':'text',
+                                        'id': 'id_search'}))

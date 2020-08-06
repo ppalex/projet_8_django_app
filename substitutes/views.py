@@ -24,7 +24,7 @@ class SubstituteView(View):
         product_name = request.GET.get('product')        
         product, substitute_list = find_substitute(product_name)
         num_substitutes = len(substitute_list)
-
+        
         page = request.GET.get('page', 1)   
         paginator = Paginator(substitute_list, 6)       
                 
