@@ -28,8 +28,7 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
         cls.driver.close()
        
 
-    def setUp(self):
-        
+    def setUp(self):       
 
         user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
 
@@ -65,33 +64,6 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
             "1X<ISRUkw+tuK"
         )
         self.driver.find_element_by_id('id_button_login').send_keys(Keys.RETURN)        
-
-
-    def test_user_search_product(self):
-        self.connect_user()            
-
-        add_url = self.live_server_url + ("%s?product=product_name_1" % reverse('substitute'))
-
-        self.driver.find_element_by_id('id_search').send_keys('product_name_1')
-        self.driver.find_element_by_id('id_search').send_keys(Keys.RETURN)
-    
-        
-        self.assertEquals(self.driver.current_url, add_url)
-        self.assertTrue(self.driver.find_element_by_id('card_2'))    
-    
-
-    def test_user_save_substitute(self):
-        self.connect_user()
-        
-        self.driver.find_element_by_id('id_search').send_keys('product_name_1')
-        self.driver.find_element_by_id('id_search').send_keys(Keys.RETURN)
-        
-        save_button =  self.driver.find_element_by_id('save_substitute_2')
-
-        save_button.click()        
-        favourite = User.objects.get(username='testuser1').product_set.first()
-        
-        self.assertEqual(favourite.barcode, 2)
 
 
     def test_user_access_product_detail(self):

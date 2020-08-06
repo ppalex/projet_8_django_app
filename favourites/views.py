@@ -20,19 +20,6 @@ class FavouriteView(LoginRequiredMixin, generic.ListView):
     template_name = 'favourites/favourites.html'
     login_url = '/login/'  
 
-    
-    # def get(self, request):     
-
-    #     current_user = request.user
-
-    #     favourites = current_user.product_set.all()
-    #     num_favourites = favourites.count()
-
-    #     context = {'favourites': favourites,
-    #                 'num_favourites': num_favourites}
-
-    #     return render(request, self.template_name, context)
-
 
     def get_queryset(self):
         current_user = self.request.user

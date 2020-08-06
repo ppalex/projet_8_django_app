@@ -31,8 +31,8 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    re_path(r'^substitute/$', SubstituteView.as_view(), name='substitute'),
-    path('product/<int:barcode>/', ProductView.as_view(), name='product'),
+    re_path('^substitute/$', SubstituteView.as_view(), name='substitute'),
+    path(r'product/<int:barcode>/', ProductView.as_view(), name='product'),
     path('favourites/', FavouriteView.as_view(), name='favourite')
     
 ]

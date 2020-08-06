@@ -74,7 +74,7 @@
                                         {% endif %}
                                         <form action="{% url 'product' barcode=substitute.barcode %}" method="get">
 
-                                            <input type="submit" value="Détail"
+                                            <input type="submit" value="Détail" id="detail_product_{{ substitute.barcode }}"
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
                                     </div>

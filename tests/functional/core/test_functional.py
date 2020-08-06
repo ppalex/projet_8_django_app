@@ -19,21 +19,16 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.driver = webdriver.Chrome(chrome_options=chrome_options)
-        # cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-        cls.driver.close()
-        
+        cls.driver.close()        
 
-    def setUp(self):
-        
+    def setUp(self):     
 
-        user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')  
-        
-
+        user1 = User.objects.create_user(username='testuser1', password='1X<ISRUkw+tuK')
 
     def test_user_can_connect(self):
         self.driver.get(self.live_server_url)
