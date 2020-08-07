@@ -54,4 +54,9 @@ class CustomLogoutView(SuccessMessageMixin, LogoutView):
 
 
 class ProfileView(View):
-    pass
+    template_name = 'users/profile.html'
+
+    def get(self, request):   
+        
+
+        return render(request, self.template_name)

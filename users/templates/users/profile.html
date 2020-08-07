@@ -1,0 +1,54 @@
+{% extends "core/base.html" %}
+
+{% block header %}
+<header>
+    <div class="card bg-light">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-10 align-self-end">
+                    <h1 class="text-uppercase text-black font-weight-bold"> Bienvenue sur votre page de profil
+                        {{user.username}}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{% endblock header %}
+
+
+{% block content %}
+
+<section class="page-section">
+    <div class="container">
+        <h2 class="text-center mt-0">Vos informations personnelles</h2>
+
+        <hr class="divider my-4" />
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <p> <i class="fa fa-id-card" style='font-size:200px'></i></p>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <blockquote>
+                    <p><i class='fas fa-user' id="profile_id" style='font-size:30px'></i> {{user.username}}</p> 
+                </blockquote>
+                <p> <i class="fa fa-envelope" id="profile_id" style='font-size:30px'></i>  {{user.email}} </p>
+                <br/>
+            </div>
+    
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+{% endblock %}
