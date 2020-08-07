@@ -1,5 +1,7 @@
 {% extends "core/base.html" %}
 
+{% load static %}
+
 {% block header %}
 
 <header>
@@ -33,7 +35,36 @@
                 <div class="row">
                     {% for substitute in substitute_pages %}
                     <div class="col-md-4">
-                        <div class="card mb-4 box-shadow" id="card_{{ substitute.barcode }}">
+                        {% if substitute.nutriscore_grade == 'a' %}
+
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
+
+                        {% elif substitute.nutriscore_grade == 'b' %}
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
+                        {% elif substitute.nutriscore_grade == 'c' %}
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
+                        {% elif substitute.nutriscore_grade == 'd' %}
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        {% elif substitute.nutriscore_grade == 'e' %}
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        {% else %}
+                        <img class="card-img-top" 
+                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                        src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
+
+                        {% endif %}
+                        <div class="card mb-4 box-shadow" id="card_{{ substitute.barcode }}">                           
+                            
                             <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
                                 src={{substitute.image_url}} data-holder-rendered="true">
                             <div class="card-body">
@@ -78,7 +109,6 @@
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
                                     </div>
-                                    <small class="text-muted">{{substitute.nutriscore_grade}}</small>
                                 </div>
                             </div>
                         </div>
