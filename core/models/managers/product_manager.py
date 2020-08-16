@@ -1,4 +1,5 @@
 import logging
+from random import randint
 
 from django.apps import apps
 from django.db import IntegrityError, models
@@ -65,6 +66,22 @@ class ProductManager(models.Manager):
         product_model = apps.get_model('core', 'Product')
 
         product = product_model.product_objects.get(product_name=product_name)
+
+        return product
+
+    def get_product_contains_name(self, product_name):
+        product_model = apps.get_model('core', 'Product')
+
+        products = product_model.product_objects.filter(product_name__icontains=product_name)
+
+        if products.count() > 1:
+            product = products[randint(0, len(products) - 1)]
+
+        elif products.count() > 1:
+            product = products[0]
+        
+        else:
+            product = []
 
         return product
 

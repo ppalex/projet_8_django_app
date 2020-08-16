@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -18,8 +18,7 @@ class SubstituteView(View):
     template_name = 'substitutes/substitute.html'
     context = {} 
 
-    def get(self, request):     
-              
+    def get(self, request):              
        
         product_name = request.GET.get('product')        
         product, substitute_list = find_substitute(product_name)
@@ -42,5 +41,7 @@ class SubstituteView(View):
         self.context["substitute_pages"] = substitute_pages 
                        
         return render(request, self.template_name, self.context)
+
+  
 
 

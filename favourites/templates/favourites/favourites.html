@@ -7,7 +7,7 @@
     <div class="card bg-light">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-10 align-self-end">                    
+                <div class="col-lg-10 align-self-end">
 
                     {% if favourites %}
                     <h1 class="text-uppercase text-black font-weight-bold">Vos aliments sauvegardés
@@ -42,30 +42,30 @@
                     {% for favourite in favourites %}
                     <div class="col-md-4">
                         {% if favourite.nutriscore_grade == 'a' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
 
                         {% elif favourite.nutriscore_grade == 'b' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
                         {% elif favourite.nutriscore_grade == 'c' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
                         {% elif favourite.nutriscore_grade == 'd' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% elif favourite.nutriscore_grade == 'e' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% else %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
 
                         {% endif %}
                         <div class="card mb-4 box-shadow">
@@ -81,10 +81,11 @@
                                             {% csrf_token %}
                                             <input type="submit" name="action" value="Supprimer"
                                                 class="btn btn-sm btn-outline-secondary" />
-                                            
-                                            <input type="hidden" name="substitute_barcode" value="{{ favourite.barcode }}">
+
+                                            <input type="hidden" name="substitute_barcode"
+                                                value="{{ favourite.barcode }}">
                                         </form>
-                                       
+
 
                                         <form action="{% url 'product' barcode=favourite.barcode %}" method="post">
                                             {% csrf_token %}
@@ -92,8 +93,6 @@
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
                                     </div>
-
-                                    <small class="text-muted">{{favourite.nutriscore_grade}}</small>
                                 </div>
                             </div>
                         </div>
@@ -121,8 +120,7 @@
                 <li class="page-item active"><span class="page-link">{{ i }} <span
                             class="sr-only">(current)</span></span></li>
                 {% else %}
-                <li class="page-item"><a class="page-link"
-                        href="{% url 'favourite' %}?page={{i}}">{{ i }}</a>
+                <li class="page-item"><a class="page-link" href="{% url 'favourite' %}?page={{i}}">{{ i }}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
@@ -137,7 +135,7 @@
             </ul>
             {% endif %}
         </nav>
-        
+
 </section>
 
 

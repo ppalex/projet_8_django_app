@@ -2,16 +2,16 @@ from core.models.managers.product_manager import ProductManager
 
 def find_substitute(product_name):
     
-    product = ProductManager().get_product_by_name(product_name)
+    product = ProductManager().get_product_contains_name(product_name)
 
-    product_nutriscore = product.nutriscore_grade
-
-    substitute_list = ProductManager().get_all_product_by_nutriscore_inf(product_nutriscore)
-    best_substitute_list = check_intersection(substitute_list, product)
+    if product:
+        product_nutriscore = product.nutriscore_grade
+        substitute_list = ProductManager().get_all_product_by_nutriscore_inf(product_nutriscore)
+        best_substitute_list = check_intersection(substitute_list, product)
+    else:
+        best_substitute_list = []
 
     return product, best_substitute_list
-
-
 
 
 def check_intersection(product_list, product):

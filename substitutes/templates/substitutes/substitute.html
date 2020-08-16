@@ -22,13 +22,14 @@
 
 {% endblock header %}
 
-
 {% block content %}
 
 <!-- Substitute cards-->
 <section class="page-section" id="substitutes">
     <div class="container">
+        
         <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par:</h2>
+
         <hr class="divider my-4" />
         <div class="album py-5 bg-light">
             <div class="container">
@@ -77,8 +78,7 @@
                                             <form action="{% url 'login' %}" method="get">
                                                 <input type="submit" name="action" value="Sauvegardé" 
                                                     class="btn btn-sm btn-outline-secondary" disabled>
-                                            </form>
-    
+                                            </form>    
 
                                             {% else %}
 
@@ -113,7 +113,6 @@
                         </div>
                     </div>
                     {% endfor %}
-
 
                 </div>
                 {% if substitute_pages.has_other_pages %}
@@ -153,6 +152,5 @@
             </div>           
         </div>
 </section>
-
 
 {% endblock %}
