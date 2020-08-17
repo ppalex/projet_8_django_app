@@ -74,12 +74,8 @@ class ProductManager(models.Manager):
 
         products = product_model.product_objects.filter(product_name__icontains=product_name)
 
-        if products.count() > 1:
-            product = products[randint(0, len(products) - 1)]
-
-        elif products.count() > 1:
+        if products.count() >= 1:
             product = products[0]
-        
         else:
             product = []
 

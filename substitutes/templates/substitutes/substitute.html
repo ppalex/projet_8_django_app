@@ -27,6 +27,9 @@
 <!-- Substitute cards-->
 <section class="page-section" id="substitutes">
     <div class="container">
+
+        {% if num_substitutes > 0 %}
+
         
         <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par:</h2>
 
@@ -149,8 +152,15 @@
                     {% endif %}
                 </nav>
 
-            </div>           
+            </div>
+                      
         </div>
+
+        {% else %} 
+        <h2 class="text-center mt-0">Il n'y a pas de produit qui correspondent à votre recherche.</h2>
+
+        {% endif %} 
+       
 </section>
 
 {% endblock %}

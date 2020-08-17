@@ -1,5 +1,6 @@
-{% extends "core/base.html" %}
 
+{% extends "core/base.html" %}
+{% load static %}
 {% block header %}
 
 <header>
@@ -10,6 +11,7 @@
                     <h1 class="text-uppercase text-black font-weight-bold">
                         {{product.product_name}}
                     </h1>
+                    <img class="img-responsive" src="{{ product.image_url }}" alt="{{ product.name }}">
                    
                 </div>
             </div>
@@ -20,8 +22,57 @@
 {% endblock header %}
 
 
+
+
 {% block content %}
 
+<section class="page-section" id="product_detail">
+    <div class="container">
+      <hr class="divider my-4">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 text-center">
+          <h5> Nutriscore : 
+              {% if product.nutriscore_grade == 'a' %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative;"
+            src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
+
+            {% elif product.nutriscore_grade == 'b' %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative; "
+            src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
+            {% elif product.nutriscore_grade == 'c' %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative; "
+            src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
+            {% elif product.nutriscore_grade == 'd' %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative; "
+            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+            {% elif product.nutriscore_grade == 'e' %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative; "
+            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+            {% else %}
+            <img class="card-img-top" 
+            style="height: 50px; width: 50px; position: relative; "
+            src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
+
+            {% endif %} 
+        </h5>
+        </div>
+        <div class="col-lg-6 col-md-6 text-center">
+          <h5> Description du produit </h5>
+
+          {{ product.product_description }}
+          
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 text-center">
+        <a href="{{ product.off_url }}"> lien du produit sur OpenFoodfacts</a>
+      </div>
+    </div>
+  </section>
 
 
 {% endblock %}

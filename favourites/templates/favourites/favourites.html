@@ -87,7 +87,7 @@
                                         </form>
 
 
-                                        <form action="{% url 'product' barcode=favourite.barcode %}" method="post">
+                                        <form action="{% url 'product' barcode=favourite.barcode %}" method="get">
                                             {% csrf_token %}
                                             <input type="submit" name="product_detail" value="Détail"
                                                 class="btn btn-sm btn-outline-secondary" />
