@@ -21,15 +21,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l$3hfpcgj6r#27gdf_no6(29=52faamdso6#3ik*16(qcskd$_'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'c@n%u@91tum=@j392g20b8znh7dqfo-v%81))gxbbmu$=dy_*)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['projet-8-purbeurre.herokuapp.com', '127.0.0.1']
-
-
-
 
 # Application definition
 
@@ -159,3 +159,4 @@ PAYLOAD = {
 CATEGORIES = ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]
 
 django_heroku.settings(locals())
+
