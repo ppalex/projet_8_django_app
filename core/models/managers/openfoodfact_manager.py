@@ -3,6 +3,7 @@ from django.conf import settings
 from core.models.product import ProductDownloader, ProductCleaner
 from core.models.payload import Payload
 
+
 class OffManager:
     def __init__(self):
         """Constructor of the class OffManager.
@@ -20,7 +21,7 @@ class OffManager:
         headers = {}
 
         category_list = settings.CATEGORIES
-        
+
         for category in category_list:
             payload = Payload(
                 action=settings.PAYLOAD['action'],
@@ -30,19 +31,20 @@ class OffManager:
                 page_size=settings.PAYLOAD['page_size'],
                 json=settings.PAYLOAD['json'])
 
-            product_downloader = ProductDownloader(url, headers, payload.get_payload_formatted())
+            product_downloader = ProductDownloader(
+                url, headers, payload.get_payload_formatted())
             product_downloader.send_request()
 
             products_list = product_downloader.get_products_from_json()
 
             product_cleaner = ProductCleaner()
-            product_cleaner_list = product_cleaner.create_list_product_cleaner(products_list, category)    
+            product_cleaner_list = product_cleaner.create_list_product_cleaner(
+                products_list, category)
 
             product_cleaner.format_categories(product_cleaner_list)
 
             self.data += product_cleaner_list
 
-   
     def get_all_categories(self):
         """This method get all categories from products recovered in self.data.
 

@@ -21,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'c@n%u@91tum=@j392g20b8znh7dqfo-v%81))gxbbmu$=dy_*)')
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', 'c@n%u@91tum=@j392g20b8znh7dqfo-v%81))gxbbmu$=dy_*)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -98,10 +99,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_project_8',
-        'USER' : 'postgres',
-        'PASSWORD' : 'postgres',
-        'HOST' : 'localhost',
-        'PORT' : '5432'
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -139,14 +140,13 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # API Openfoodfacts
 API_OFF = "https://fr.openfoodfacts.org/cgi/search.pl?"
 
-  
+
 PAYLOAD = {
     "action": "process",
     "tagtype_0": "categories",
@@ -154,9 +154,8 @@ PAYLOAD = {
     "tag_0": "",
     "page_size": 100,
     "json": True
-    }
+}
 
 CATEGORIES = ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]
 
 django_heroku.settings(locals())
-

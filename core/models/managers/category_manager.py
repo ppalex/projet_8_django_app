@@ -32,7 +32,7 @@ class CategoryManager(models.Manager):
         the category name from a list.
 
         Returns:
-            [List]: Contains a Categories from the db.
+            [List]: Contains Categories from the db.
         """
         categories = []
         category_model = apps.get_model('core', 'Category')
