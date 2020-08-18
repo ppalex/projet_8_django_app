@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 class User(AbstractUser, models.Model):
+    """This class represents the user model (ORM)
+    """
 
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255, unique=True)

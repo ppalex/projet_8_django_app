@@ -1,4 +1,3 @@
-from django.conf import settings
 
 class Payload:
     def __init__(self, action, tag_0, tag_contains_0, tagtype_0, page_size,
