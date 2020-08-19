@@ -106,7 +106,7 @@
         {% if page_obj.has_other_pages %}
         <nav aria-label="...">
 
-            <ul class="pagination">
+            <ul class="pagination justify-content-center flex-wrap">
                 {% if page_obj.has_previous %}
                 <li class="page-item"><a class="page-link"
                         href="{% url 'favourite' %}?page={{page_obj.previous_page_number}}">Précédent</a>
