@@ -25,7 +25,7 @@ class OffManager:
         for category in category_list:
             payload = Payload(
                 action=settings.PAYLOAD['action'],
-                tag_0=settings.PAYLOAD['tag_0'],
+                tag_0=category,
                 tag_contains_0=settings.PAYLOAD['tag_contains_0'],
                 tagtype_0=settings.PAYLOAD['tagtype_0'],
                 page_size=settings.PAYLOAD['page_size'],

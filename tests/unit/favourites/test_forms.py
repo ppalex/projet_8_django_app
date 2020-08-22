@@ -24,7 +24,7 @@ class DeleteFavouriteFormTest(TestCase):
                 image_url="www.image_url.com")
             user1.product_set.add(product)
 
-    def test_save_submit_button(self):
+    def test_delete_submit_button(self):
         self.client.login(
             username='testuser1', password='1X<ISRUkw+tuK')
 

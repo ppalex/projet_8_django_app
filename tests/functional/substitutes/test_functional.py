@@ -89,18 +89,3 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
         favourite = User.objects.get(username='testuser1').product_set.first()
 
         self.assertEqual(favourite.barcode, 2)
-
-    def test_user_access_product_detail(self):
-        self.connect_user()
-
-        self.driver.find_element_by_id('id_search').send_keys('product_name_1')
-        self.driver.find_element_by_id('id_search').send_keys(Keys.RETURN)
-
-        url = self.live_server_url + \
-            ("%s?" % reverse('product', kwargs={'barcode': 2}))
-
-        detail_button = self.driver.find_element_by_id('detail_product_2')
-
-        detail_button.click()
-
-        self.assertEquals(self.driver.current_url, url)
