@@ -2,6 +2,16 @@ from core.models.managers.product_manager import ProductManager
 
 
 def find_substitute(product_name):
+    """This function gets product from database which contains the product_name.
+    Then, it gets the nutriscore of the found product ang get a list of other
+    product with a better nutriscore grade.
+
+    Args:
+        product_name ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
 
     product = ProductManager().get_product_contains_name(product_name)
 
