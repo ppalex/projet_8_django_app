@@ -44,24 +44,3 @@ class OffManager:
             product_cleaner.format_categories(product_cleaner_list)
 
             self.data += product_cleaner_list
-
-    def get_all_categories(self):
-        """This method get all categories from products recovered in self.data.
-
-        Returns:
-            [List] -- Contains all the possible categories from products.
-        """
-        product_list = self.data
-        return [category for product in product_list
-                for category in product.categories]
-
-    def get_all_stores(self):
-        """This method get all stores from products recovered in self.data.
-
-        Returns:
-            [List] -- Contains all the possible categories from products.
-        """
-        product_list = self.data
-
-        return [store for product in product_list
-                for store in product.stores]

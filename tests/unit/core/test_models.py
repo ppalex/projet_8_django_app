@@ -6,6 +6,7 @@ from django.test import TestCase
 from core.models.payload import Payload
 from core.models.product import (Product, ProductCleaner, ProductDownloader)
 from core.models.store import Store
+from core.models.category import Category
 from core.models.user import User
 
 # Test Product
@@ -140,6 +141,19 @@ class PayloadTestCase(TestCase):
 
 
 # Test Category
+
+class CategoryTestCase(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        Category.category_objects.create(category_name="category_name")
+
+    def test_category_name_label(self):
+        category = Category.category_objects.get(category_id='1')
+        category_name_label = category._meta.get_field(
+            'category_name').verbose_name
+
+        self.assertEquals(category_name_label, 'category name')
 
 # Test Store
 

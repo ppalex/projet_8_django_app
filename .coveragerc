@@ -3,3 +3,10 @@ source=
     ./
 omit=
     envs/*
+    tests/*
+    config/*
+    users/migrations/*
+    core/migrations/*
+    favourites/migrations/*
+    substitutes/migrations/*
+    products/migrations/*
