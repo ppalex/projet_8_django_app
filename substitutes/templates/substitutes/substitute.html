@@ -6,38 +6,40 @@
 
 <header>
     <div class="card bg-light">
-        <div class="container h-100" background="{{ product.image_url }}">
+        <div class="container h-100">
+            
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end">
                     <h1 class="text-uppercase text-black font-weight-bold">{{product.product_name}}
                         {% if product.nutriscore_grade == 'a' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
 
                         {% elif product.nutriscore_grade == 'b' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
                         {% elif product.nutriscore_grade == 'c' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
                         {% elif product.nutriscore_grade == 'd' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% elif product.nutriscore_grade == 'e' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% else %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
 
                         {% endif %}
                     </h1>
+                    <img class="img-responsive" src="{{ product.image_url }}" alt="{{ product.name }}" >
                     <h2 class="text-uppercase text-black font-weight-bold">
                         {{num_substitutes}} produit(s) trouvé(s)
                     </h2>
@@ -57,7 +59,7 @@
 
         {% if num_substitutes > 0 %}
 
-        
+
         <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par:</h2>
 
         <hr class="divider my-4" />
@@ -67,34 +69,34 @@
                     {% for substitute in substitute_pages %}
                     <div class="col-md-4">
                         {% if substitute.nutriscore_grade == 'a' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_a.png' %}">
 
                         {% elif substitute.nutriscore_grade == 'b' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_b.png' %}">
                         {% elif substitute.nutriscore_grade == 'c' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_c.png' %}">
                         {% elif substitute.nutriscore_grade == 'd' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% elif substitute.nutriscore_grade == 'e' %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_d.png' %}">
                         {% else %}
-                        <img class="card-img-top" 
-                        style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
-                        src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
+                        <img class="card-img-top"
+                            style="height: 50px; width: 50px; position: absolute;top:0px;right: 0px;z-index: 1; "
+                            src="{% static 'core/assets/img/nutriscores/nutriscore_unknown.png' %}">
 
                         {% endif %}
-                        <div class="card mb-4 box-shadow" id="card_{{ substitute.barcode }}">                           
-                            
+                        <div class="card mb-4 box-shadow" id="card_{{ substitute.barcode }}">
+
                             <img class="card-img-top" style="height: 250px; width: 100%; display: block;"
                                 src={{substitute.image_url}} data-holder-rendered="true">
                             <div class="card-body">
@@ -103,26 +105,27 @@
                                     <div class="btn-group" role="group">
 
                                         {% if user.is_authenticated %}
-                                            {% if substitute in user.product_set.all %}
+                                        {% if substitute in user.product_set.all %}
 
-                                            <form action="{% url 'login' %}" method="get">
-                                                <input type="submit" name="action" value="Sauvegardé" 
-                                                    class="btn btn-sm btn-outline-secondary" disabled>
-                                            </form>    
+                                        <form action="{% url 'login' %}" method="get">
+                                            <input type="submit" name="action" value="Sauvegardé"
+                                                class="btn btn-sm btn-outline-secondary" disabled>
+                                        </form>
 
-                                            {% else %}
+                                        {% else %}
 
-                                            <form action="{% url 'favourite' %}" method="post" name="save_substitute">
-                                                {% csrf_token %}
-                                                <input type="submit" name="action" value="Sauvegarder"
-                                                    class="btn btn-sm btn-outline-secondary" id="save_substitute_{{ substitute.barcode }}"/>
-                                                <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
-                                                <input type="hidden" name="product_name" value="{{ product.product_name }}">
-                                                <input type="hidden" name="substitute_barcode"
-                                                    value="{{ substitute.barcode }}">
-                                            </form>
+                                        <form action="{% url 'favourite' %}" method="post" name="save_substitute">
+                                            {% csrf_token %}
+                                            <input type="submit" name="action" value="Sauvegarder"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                id="save_substitute_{{ substitute.barcode }}" />
+                                            <input type="hidden" name="product_barcode" value="{{ product.barcode }}">
+                                            <input type="hidden" name="product_name" value="{{ product.product_name }}">
+                                            <input type="hidden" name="substitute_barcode"
+                                                value="{{ substitute.barcode }}">
+                                        </form>
 
-                                            {% endif %}
+                                        {% endif %}
 
                                         {% else %}
 
@@ -134,7 +137,8 @@
                                         {% endif %}
                                         <form action="{% url 'product' barcode=substitute.barcode %}" method="get">
 
-                                            <input type="submit" value="Détail" id="detail_product_{{ substitute.barcode }}"
+                                            <input type="submit" value="Détail"
+                                                id="detail_product_{{ substitute.barcode }}"
                                                 class="btn btn-sm btn-outline-secondary" />
                                         </form>
                                     </div>
@@ -145,9 +149,9 @@
                     {% endfor %}
 
                 </div>
-               
+
             </div>
-                      
+
         </div>
 
         {% if substitute_pages.has_other_pages %}
@@ -161,17 +165,31 @@
                 {% else %}
                 <li class="disabled"><span class="page-link">Précédent</span></li>
                 {% endif %}
-                {% for i in substitute_pages.paginator.page_range %}
 
-                {% if substitute_pages.number == i %}
-                <li class="page-item active"><span class="page-link">{{ i }} <span
-                            class="sr-only">(current)</span></span></li>
-                {% else %}
-                <li class="page-item"><a class="page-link"
-                        href="{% url 'substitute' %}?product={{product.product_name}}&page={{i}}">{{ i }}</a>
+                {% if substitute_pages.number|add:'-4' > 1 %}
+                <li><a class="page-link"
+                        href="{% url 'substitute' %}?product={{product.product_name}}&page={{ substitute_pages.number|add:'-5' }}">&hellip;</a>
                 </li>
                 {% endif %}
+                
+                {% for i in substitute_pages.paginator.page_range %}
+
+                    {% if substitute_pages.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }} <span
+                                class="sr-only">(current)</span></span></li>
+                    {% elif i > substitute_pages.number|add:'-5' and i < substitute_pages.number|add:'5' %}
+                    <li class="page-item"><a class="page-link"
+                            href="{% url 'substitute' %}?product={{product.product_name}}&page={{i}}">{{ i }}</a>
+                    </li>
+
+                    {% endif %}
                 {% endfor %}
+
+                {% if substitute_pages.paginator.num_pages > substitute_pages.number|add:'4' %}
+                <li><a class="page-link"
+                        href="{% url 'substitute' %}?product={{product.product_name}}&page={{ substitute_pages.number|add:'5' }}">&hellip;</a>
+                </li>
+                {% endif %}
 
                 {% if substitute_pages.has_next %}
                 <li class="page-item"><a class="page-link"
@@ -184,11 +202,11 @@
             {% endif %}
         </nav>
 
-        {% else %} 
+        {% else %}
         <h2 class="text-center mt-0">Il n'y a pas de substituts qui correspondent à votre recherche.</h2>
 
-        {% endif %} 
-       
+        {% endif %}
+
 </section>
 
 {% endblock %}
