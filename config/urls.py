@@ -6,7 +6,7 @@ from django.contrib import admin
 
 from django.urls import path, re_path
 
-from core.views import index, legal_notice
+from core.views import index, legal_notice, autocomplete
 from users.views import (RegisterView, ProfileView,
                          CustomLoginView, CustomLogoutView)
 
@@ -22,6 +22,7 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile'),
     re_path('^substitute/$', SubstituteView.as_view(), name='substitute'),
     path(r'product/<int:barcode>/', ProductView.as_view(), name='product'),
-    path('favourites/', FavouriteView.as_view(), name='favourite')
+    path('favourites/', FavouriteView.as_view(), name='favourite'),
+    path('autocomplete', autocomplete , name='autocomplete')
 
 ]
