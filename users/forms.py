@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from core.models.user import User
 from django import forms
 
-from .models import Pro
+
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -25,3 +25,15 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError("L'emai existe déjà")
         return email
 
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+         field = ['image']

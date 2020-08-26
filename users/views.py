@@ -59,14 +59,15 @@ class ProfileView(View):
     """This class displays the profile view.
     """
     template_name = 'users/profile.html'
+    context = {}
 
     def get(self, request):
 
-        u_form = UserUpdateForm()
-        p_form = ProfileUpdateForm()
+        # u_form = UserUpdateForm()
+        # p_form = ProfileUpdateForm()
 
-        context = {
-            'u_form': u_form,
-            'p_form': p_form
-        }
-        return render(request, self.template_name, context)
+        # context = {
+        #     'u_form': u_form,
+        #     'p_form': p_form
+        # }
+        return render(request, self.template_name, self.context)
