@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from core.models.user import User
 from django import forms
 
+from .models import Pro
+
 
 class CustomUserCreationForm(UserCreationForm):
     """This class represents the user register form.
@@ -22,3 +24,4 @@ class CustomUserCreationForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("L'emai existe déjà")
         return email
+

@@ -3,7 +3,7 @@ from django.http import JsonResponse
 
 
 from substitutes.forms import SubstituteSearchForm
-from core.models.product import Product 
+from core.models.product import Product
 
 
 def index(request):
@@ -43,12 +43,13 @@ def autocomplete(request):
     Returns:
         [ HttpResponse]: Contains the response for the home page view.
     """
-    
+
     if 'term' in request.GET:
 
         print(request.GET.get('term'))
-        
-        query = Product.product_objects.filter(product_name__istartswith=request.GET.get('term'))
+
+        query = Product.product_objects.filter(
+            product_name__istartswith=request.GET.get('term'))
 
         product_names = list()
 
