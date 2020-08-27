@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'substitutes.apps.SubstitutesConfig',
     'products.apps.ProductsConfig',
-    'favourites.apps.FavouritesConfig'
+    'favourites.apps.FavouritesConfig',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -166,3 +167,5 @@ PAYLOAD = {
 CATEGORIES = ["Pizzas", "Snacks", "Viandes", "Produits laitiers", "Graines"]
 
 django_heroku.settings(locals())
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

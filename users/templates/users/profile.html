@@ -1,4 +1,6 @@
 {% extends "core/base.html" %}
+{% load crispy_forms_tags %}
+
 
 {% block header %}
 <header>
@@ -43,7 +45,42 @@
             </div>
 
         </div>
-    </div> 
+    </div>
+   
+
+   
 </section>
+
+<div class="container">
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom">Modifier les informations du profil</legend>
+                {{ u_form|crispy }}         
+                {{ p_form|crispy }}
+                
+            </fieldset>
+            
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Mettre à jour</button>
+          </div>
+       
+     
+        {% if form.errors %}
+            
+            {% for field in form %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %}
+            {% endfor %}
+
+        {% endif %}
+    </form>
+
+
+</div>
 
 {% endblock %}
