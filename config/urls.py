@@ -23,6 +23,6 @@ urlpatterns = [
     re_path('^substitute/$', SubstituteView.as_view(), name='substitute'),
     path(r'product/<int:barcode>/', ProductView.as_view(), name='product'),
     path('favourites/', FavouriteView.as_view(), name='favourite'),
-    path('autocomplete', autocomplete , name='autocomplete')
+    path('autocomplete', autocomplete, name='autocomplete')
 
 ]
