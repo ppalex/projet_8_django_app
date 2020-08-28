@@ -5,8 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
 from django.views import View
 
-from .forms import (CustomUserCreationForm, UserCreationForm,
-                    UserUpdateForm, ProfileUpdateForm)
+from .forms import (CustomUserCreationForm, UserCreationForm)
 
 
 class RegisterView(View):
@@ -62,11 +61,4 @@ class ProfileView(View):
 
     def get(self, request):
 
-        u_form = UserUpdateForm()
-        p_form = ProfileUpdateForm()
-
-        context = {
-            'u_form': u_form,
-            'p_form': p_form
-        }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name)
