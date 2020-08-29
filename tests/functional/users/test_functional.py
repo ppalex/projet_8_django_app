@@ -20,7 +20,6 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.driver = webdriver.Chrome(chrome_options=chrome_options)
-        # cls.driver.implicitly_wait(15)
         cls.driver.maximize_window()
 
     @classmethod
