@@ -1,6 +1,11 @@
 from django.test import TestCase
 from users.forms import (CustomUserCreationForm, ProfileUpdateForm,
                          UserUpdateForm)
+from django.core.files.uploadedfile import SimpleUploadedFile
+
+from django.conf import settings
+
+import os
 
 
 class CustomUserCreationFormTest(TestCase):
@@ -56,16 +61,16 @@ class UserUpdateFormTest(TestCase):
         }
 
         form = UserUpdateForm(data)
-
         self.assertTrue(form.is_valid())
 
 
 class ProfileUpdateFormTest(TestCase):
     def test_form(self):
-
+        file_path = os.path.join(settings.MEDIA_ROOT, 'default.jpg')
+        upload_file = open(file_path, 'rb')
         data = {
-            'image': 'testuser',
-           
+            'image': SimpleUploadedFile(upload_file.name, upload_file.read())
+
         }
 
         form = ProfileUpdateForm(data)

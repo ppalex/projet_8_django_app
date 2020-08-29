@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
 from django.views import View
 
-from .forms import (CustomUserCreationForm, UserCreationForm,
+from .forms import (CustomUserCreationForm,
                     UserUpdateForm, ProfileUpdateForm)
 
 
