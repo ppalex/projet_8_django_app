@@ -7,6 +7,10 @@ from core.models.category import Category
 from core.models.product import Product
 from core.models.user import User
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 
@@ -89,3 +93,25 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
         favourite = User.objects.get(username='testuser1').product_set.first()
 
         self.assertEqual(favourite.barcode, 2)
+
+    def test_user_search_product_autocomplete(self):
+        self.connect_user()
+
+        add_url = self.live_server_url + \
+            ("%s?product=p" % reverse('substitute'))
+        self.driver.find_element_by_id('id_search').send_keys('p')
+
+        self.driver.find_element_by_id(
+            'id_search').send_keys(Keys.DOWN + Keys.RETURN)
+
+        WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+            (By.XPATH,
+             '//h1[@class="text-uppercase text-black font-weight-bold"]')))
+
+        product_name = self.driver.find_elements_by_xpath(
+            '//h1[@class="text-uppercase text-black font-weight-bold"]'
+        )[0].text
+
+        self.assertEquals(self.driver.current_url, add_url)
+        self.assertTrue(self.driver.find_element_by_id('card_2'))
+        self.assertEquals(product_name, "product_name_1")

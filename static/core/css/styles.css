@@ -10167,7 +10167,8 @@ header.masthead h1 {
 
 .ui-autocomplete {
   max-height: 300px;
+  max-width: 300px;
   overflow-y: auto;
   /* prevent horizontal scrollbar */
-  overflow-x: hidden;
+  overflow-x: auto;
 }
