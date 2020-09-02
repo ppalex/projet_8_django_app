@@ -35,7 +35,8 @@ def legal_notice(request):
 
 
 def autocomplete(request):
-    """This function displays the home page views.
+    """This function is used to autocomplete search bar with products
+    from database.
 
     Args:
         request ([HttpRequest]): Contains the metadata about the request.
@@ -45,8 +46,6 @@ def autocomplete(request):
     """
 
     if 'term' in request.GET:
-
-        print(request.GET.get('term'))
 
         query = Product.product_objects.filter(
             product_name__istartswith=request.GET.get('term'))

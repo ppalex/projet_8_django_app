@@ -93,7 +93,6 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
         favourite = User.objects.get(username='testuser1').product_set.first()
 
         self.assertEqual(favourite.barcode, 2)
-<<<<<<< HEAD
 
     def test_user_search_product_autocomplete(self):
         self.connect_user()
@@ -116,5 +115,3 @@ class ChromeFunctionalTestCases(StaticLiveServerTestCase):
         self.assertEquals(self.driver.current_url, add_url)
         self.assertTrue(self.driver.find_element_by_id('card_2'))
         self.assertEquals(product_name, "product_name_1")
-=======
->>>>>>> update_profile
