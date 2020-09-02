@@ -57,7 +57,4 @@ def autocomplete(request):
 
         return JsonResponse(product_names, safe=False)
 
-    form = SubstituteSearchForm()
-    context = {'form': form}
-
-    return render(request, 'core/home.html', context)
+    return None
