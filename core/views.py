@@ -46,8 +46,6 @@ def autocomplete(request):
 
     if 'term' in request.GET:
 
-        print(request.GET.get('term'))
-
         query = Product.product_objects.filter(
             product_name__istartswith=request.GET.get('term'))
 
@@ -58,7 +56,4 @@ def autocomplete(request):
 
         return JsonResponse(product_names, safe=False)
 
-    form = SubstituteSearchForm()
-    context = {'form': form}
-
-    return render(request, 'core/home.html', context)
+    return None
